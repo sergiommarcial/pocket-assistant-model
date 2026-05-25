@@ -1,5 +1,11 @@
 import pytest
-from data.build_dataset import strip_js_comments, SYSTEM, validate_record, to_chatml, build_splits
+from data.build_dataset import (
+    strip_js_comments,
+    SYSTEM,
+    validate_record,
+    to_chatml,
+    build_splits,
+)
 
 
 class TestStripJsComments:
@@ -55,7 +61,11 @@ class TestValidateRecord:
 
 class TestToChatml:
     def test_with_input(self):
-        record = {"instruction": "Make concise.", "input": "Long text.", "response": "Short."}
+        record = {
+            "instruction": "Make concise.",
+            "input": "Long text.",
+            "response": "Short.",
+        }
         result = to_chatml(record, SYSTEM)
         assert result["messages"][0] == {"role": "system", "content": SYSTEM}
         assert result["messages"][1]["content"] == "Make concise.\n\nLong text."
@@ -74,12 +84,19 @@ class TestToChatml:
     def test_roles_are_correct(self):
         record = {"instruction": "Fix.", "input": "text", "response": "Fixed."}
         result = to_chatml(record, SYSTEM)
-        assert [m["role"] for m in result["messages"]] == ["system", "user", "assistant"]
+        assert [m["role"] for m in result["messages"]] == [
+            "system",
+            "user",
+            "assistant",
+        ]
 
 
 class TestBuildSplits:
     def _records(self, n: int) -> list[dict]:
-        return [{"instruction": f"Fix {i}.", "input": "", "response": f"Done {i}."} for i in range(n)]
+        return [
+            {"instruction": f"Fix {i}.", "input": "", "response": f"Done {i}."}
+            for i in range(n)
+        ]
 
     def test_split_sizes(self):
         train, valid = build_splits(self._records(10), train_n=8, seed=42)

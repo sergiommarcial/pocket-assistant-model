@@ -1,77 +1,94 @@
-.PHONY: install dataset test train fuse quantize gguf export test-export probe full_train help
+.PHONY: install dataset test train fuse quantize gguf export test-export probe full_train clean help
 .DEFAULT_GOAL := help
 
-CYAN   := \033[36m
-GREEN  := \033[32m
-YELLOW := \033[33m
-BOLD   := \033[1m
-DIM    := \033[2m
-RESET  := \033[0m
+CYAN  := \033[96m
+BOLD  := \033[1m
+RESET := \033[0m
+GREEN := \033[92m
+YELLOW := \033[93m
 
-help:
-	@printf "$(BOLD)pocket-assistant-model$(RESET)\n\n"
-	@printf "$(YELLOW)Setup$(RESET)\n"
-	@printf "  $(CYAN)install$(RESET)       $(DIM)Install dependencies (uv sync --group dev)$(RESET)\n"
-	@printf "\n$(YELLOW)Data & training$(RESET)\n"
-	@printf "  $(CYAN)dataset$(RESET)       $(DIM)Build train/valid JSONL from data/raw/$(RESET)\n"
-	@printf "  $(CYAN)train$(RESET)         $(DIM)LoRA fine-tune (800 iters)$(RESET)\n"
-	@printf "  $(CYAN)fuse$(RESET)          $(DIM)Merge adapters into model/merged/$(RESET)\n"
-	@printf "\n$(YELLOW)Validation$(RESET)\n"
-	@printf "  $(CYAN)test$(RESET)          $(DIM)Run pytest unit tests$(RESET)\n"
-	@printf "  $(CYAN)probe$(RESET)         $(DIM)Run 76 behavioral probes against model/merged$(RESET)\n"
-	@printf "  $(CYAN)test-export$(RESET)   $(DIM)Smoke-test .mlpackage against 3 prompts$(RESET)\n"
-	@printf "\n$(YELLOW)Pipelines$(RESET)\n"
-	@printf "  $(CYAN)full_train$(RESET)    $(DIM)dataset → train → fuse → probe$(RESET)\n"
-	@printf "\n$(YELLOW)Export$(RESET)\n"
-	@printf "  $(CYAN)export$(RESET)        $(DIM)Convert to Core ML .mlpackage (iOS 17+)$(RESET)\n"
-	@printf "  $(CYAN)quantize$(RESET)      $(DIM)4-bit quantize → model/quantized/$(RESET)\n"
-	@printf "  $(CYAN)gguf$(RESET)          $(DIM)Export to GGUF (llama.cpp / Ollama)$(RESET)\n"
-	@printf "\n"
+VENV            := .venv
+PYTHON          := $(VENV)/bin/python
+UV_RUN          := uv run --python $(PYTHON)
+REQUIRED_PYTHON := 3.11
 
-install:
+help: ## Show this help message
+	@echo "$(BOLD)pocket-assistant-model$(RESET)"
+	@echo ""
+	@echo "$(BOLD)Usage:$(RESET)"
+	@echo "  make $(CYAN)<target>$(RESET)"
+	@echo ""
+	@echo "$(BOLD)Targets:$(RESET)"
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
+		awk 'BEGIN {FS = ":.*?## "}; {printf "  $(CYAN)%-14s$(RESET) %s\n", $$1, $$2}'
+
+check-python: ## Verify the venv is running Python $(REQUIRED_PYTHON)
+	@ACTUAL=$$($(PYTHON) --version 2>&1 | awk '{print $$2}'); \
+	MAJOR_MINOR=$$(echo "$$ACTUAL" | cut -d. -f1-2); \
+	if [ "$$MAJOR_MINOR" = "$(REQUIRED_PYTHON)" ]; then \
+		echo "$(GREEN)Python $$ACTUAL — OK$(RESET)"; \
+	else \
+		echo "$(YELLOW)Expected Python $(REQUIRED_PYTHON).x but found $$ACTUAL$(RESET)"; \
+		exit 1; \
+	fi
+
+install: check-python ## Sync dependencies including dev group
 	uv sync --group dev
 
-dataset:
-	uv run python data/build_dataset.py
+format: check-python ## Auto-format src/ with black
+	$(UV_RUN) black export/ tests/
 
-test:
-	uv run pytest tests/ -v
+lint: check-python ## Check src/ formatting without modifying files
+	$(UV_RUN) black --check export/ tests/
+	$(UV_RUN) bandit -r export/ tests/
+	$(UV_RUN) pyflakes export/ tests/
+	$(UV_RUN) vulture export/ tests/
 
-train:
-	uv run mlx_lm.lora --config training/lora_config.yaml
+dataset: check-python ## Build train/valid JSONL from data/raw/
+	$(UV_RUN) python data/build_dataset.py
 
-fuse:
-	uv run mlx_lm.fuse \
+test: check-python ## Run pytest unit tests
+	$(UV_RUN) pytest tests/ -v
+
+train: check-python ## LoRA fine-tune (800 iters, writes to model/adapters/)
+	$(UV_RUN) mlx_lm.lora --config training/lora_config.yaml
+
+fuse: check-python ## Merge adapters into model/merged/
+	$(UV_RUN) mlx_lm.fuse \
 		--model HuggingFaceTB/SmolLM2-360M-Instruct \
 		--adapter-path model/adapters \
 		--save-path model/merged
 
-quantize:
-	uv run mlx_lm.convert \
+quantize: check-python ## 4-bit quantize model/merged → model/quantized/
+	$(UV_RUN) mlx_lm.convert \
 		--hf-path model/merged \
 		--mlx-path model/quantized \
 		--quantize \
 		--q-bits 4
 
-gguf:
-	uv run python export/export_gguf.py \
+gguf: check-python ## Export fused model to GGUF (llama.cpp / Ollama)
+	$(UV_RUN) python export/export_gguf.py \
 		--merged-path model/merged \
 		--output model/pocket-assistant-q4.gguf
 
-export:
-	uv run python export/export_coreml.py \
+export: check-python ## Convert to Core ML .mlpackage (iOS 17+, max-length 512)
+	$(UV_RUN) python export/export_coreml.py \
 		--merged-path model/merged \
 		--output model/pocket-assistant.mlpackage \
 		--max-length 512
 
-test-export:
-	uv run python export/test_inference.py \
+test-export: check-python ## Smoke-test .mlpackage against 3 prompts
+	$(UV_RUN) python export/test_inference.py \
 		--model model/pocket-assistant.mlpackage \
 		--tokenizer model/merged \
 		--max-length 512
 
-probe:
-	uv run python export/probe.py --model model/merged
+probe: check-python ## Inspect model/merged weights and config
+	$(UV_RUN) python export/probe.py --model model/merged
 
-full_train:
-	make dataset && make train && make fuse && make probe
+full_train: ## Run full pipeline: dataset → train → fuse → probe
+	$(MAKE) dataset && $(MAKE) train && $(MAKE) fuse && $(MAKE) probe
+
+clean: ## Remove build artifacts and caches
+	rm -rf model/quantized/ model/merged/ model/*.mlpackage model/*.gguf \
+		$(shell find . -name "__pycache__" -o -name "*.pyc") 2>/dev/null; true

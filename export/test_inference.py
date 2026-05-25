@@ -1,4 +1,5 @@
 """Smoke-test a converted .mlpackage: load it and run 3 test prompts."""
+
 from __future__ import annotations
 import argparse
 from pathlib import Path
@@ -12,7 +13,10 @@ SYSTEM = Path("data/system_prompt.txt").read_text().strip()
 CURRENT_TIME = 1748880000  # fixed reference for smoke tests
 
 TEST_CASES = [
-    ("Schedule a team standup tomorrow at 9am for one hour.", f"Current time: {CURRENT_TIME}"),
+    (
+        "Schedule a team standup tomorrow at 9am for one hour.",
+        f"Current time: {CURRENT_TIME}",
+    ),
     ("Remind me to take my medication at 8pm today.", f"Current time: {CURRENT_TIME}"),
     ("Write a poem about the ocean.", ""),
 ]
@@ -34,7 +38,9 @@ def main(model_path: str, tokenizer_path: str, max_length: int = 512) -> None:
 
     for instruction, input_text in TEST_CASES:
         prompt = build_prompt(instruction, input_text)
-        tokens = tokenizer(prompt, return_tensors="np", truncation=True, max_length=max_length)
+        tokens = tokenizer(
+            prompt, return_tensors="np", truncation=True, max_length=max_length
+        )
         n = tokens["input_ids"].shape[1]
 
         input_ids = np.zeros((1, max_length), dtype=np.int32)
@@ -43,8 +49,12 @@ def main(model_path: str, tokenizer_path: str, max_length: int = 512) -> None:
         attn_mask[0, :n] = 1
 
         result = mlmodel.predict({"input_ids": input_ids, "attention_mask": attn_mask})
-        assert result.get("logits") is not None, f"No logits in output: {list(result.keys())}"
-        print(f"PASS | logits shape: {result['logits'].shape} | prompt: {instruction[:40]!r}")
+        assert (
+            result.get("logits") is not None
+        ), f"No logits in output: {list(result.keys())}"
+        print(
+            f"PASS | logits shape: {result['logits'].shape} | prompt: {instruction[:40]!r}"
+        )
 
     print("\nAll 3 smoke tests passed.")
 
@@ -52,7 +62,9 @@ def main(model_path: str, tokenizer_path: str, max_length: int = 512) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--model", required=True, help="Path to .mlpackage")
-    parser.add_argument("--tokenizer", required=True, help="Path to merged model (for tokenizer)")
+    parser.add_argument(
+        "--tokenizer", required=True, help="Path to merged model (for tokenizer)"
+    )
     parser.add_argument("--max-length", type=int, default=512)
     args = parser.parse_args()
     main(args.model, args.tokenizer, args.max_length)

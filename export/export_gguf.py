@@ -11,6 +11,7 @@ Run after `make fuse`:
 Then copy to React Native app:
   cp model/pocket-assistant-q4.gguf ../pocket-assistant/assets/models/
 """
+
 from __future__ import annotations
 import argparse
 import shutil
@@ -34,7 +35,9 @@ def find_convert_script() -> Path:
 
     # Fallback: find via brew --prefix
     try:
-        prefix = subprocess.check_output(["brew", "--prefix", "llama.cpp"], text=True).strip()
+        prefix = subprocess.check_output(
+            ["brew", "--prefix", "llama.cpp"], text=True
+        ).strip()
         candidate = Path(prefix) / "share/llama.cpp/convert_hf_to_gguf.py"
         if candidate.exists():
             return candidate
@@ -69,8 +72,15 @@ def export(merged_path: str, output: str) -> None:
     # Step 1: HuggingFace → GGUF fp16
     print(f"Step 1: Converting {merged} → {fp16_gguf} (fp16) ...")
     subprocess.run(
-        [sys.executable, str(convert_script), str(merged),
-         "--outfile", str(fp16_gguf), "--outtype", "f16"],
+        [
+            sys.executable,
+            str(convert_script),
+            str(merged),
+            "--outfile",
+            str(fp16_gguf),
+            "--outtype",
+            "f16",
+        ],
         check=True,
     )
 
@@ -82,7 +92,7 @@ def export(merged_path: str, output: str) -> None:
     )
 
     fp16_gguf.unlink()  # remove intermediate
-    size_mb = out.stat().st_size / (1024 ** 2)
+    size_mb = out.stat().st_size / (1024**2)
     print(f"Done: {out}  ({size_mb:.0f} MB)")
     print(f"\nNext: cp {out} ../pocket-assistant/assets/models/")
 

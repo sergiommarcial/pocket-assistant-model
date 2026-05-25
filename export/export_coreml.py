@@ -1,4 +1,5 @@
 """Convert fused MLX model weights to Core ML via coremltools."""
+
 from __future__ import annotations
 import argparse
 from pathlib import Path
@@ -39,7 +40,9 @@ def export(merged_path: str, output_path: str, max_length: int) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--merged-path", required=True, help="Path to fused model (mlx_lm.fuse output)")
+    parser.add_argument(
+        "--merged-path", required=True, help="Path to fused model (mlx_lm.fuse output)"
+    )
     parser.add_argument("--output", required=True, help="Output .mlpackage path")
     parser.add_argument("--max-length", type=int, default=512)
     args = parser.parse_args()
