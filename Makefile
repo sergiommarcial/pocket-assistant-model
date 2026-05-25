@@ -1,4 +1,30 @@
-.PHONY: install dataset test train fuse quantize gguf export test-export probe
+.PHONY: install dataset test train fuse quantize gguf export test-export probe help
+.DEFAULT_GOAL := help
+
+CYAN   := \033[36m
+GREEN  := \033[32m
+YELLOW := \033[33m
+BOLD   := \033[1m
+DIM    := \033[2m
+RESET  := \033[0m
+
+help:
+	@printf "$(BOLD)pocket-assistant-model$(RESET)\n\n"
+	@printf "$(YELLOW)Setup$(RESET)\n"
+	@printf "  $(CYAN)install$(RESET)       $(DIM)Install dependencies (uv sync --group dev)$(RESET)\n"
+	@printf "\n$(YELLOW)Data & training$(RESET)\n"
+	@printf "  $(CYAN)dataset$(RESET)       $(DIM)Build train/valid JSONL from data/raw/$(RESET)\n"
+	@printf "  $(CYAN)train$(RESET)         $(DIM)LoRA fine-tune (800 iters)$(RESET)\n"
+	@printf "  $(CYAN)fuse$(RESET)          $(DIM)Merge adapters into model/merged/$(RESET)\n"
+	@printf "\n$(YELLOW)Validation$(RESET)\n"
+	@printf "  $(CYAN)test$(RESET)          $(DIM)Run pytest unit tests$(RESET)\n"
+	@printf "  $(CYAN)probe$(RESET)         $(DIM)Run 76 behavioral probes against model/merged$(RESET)\n"
+	@printf "  $(CYAN)test-export$(RESET)   $(DIM)Smoke-test .mlpackage against 3 prompts$(RESET)\n"
+	@printf "\n$(YELLOW)Export$(RESET)\n"
+	@printf "  $(CYAN)export$(RESET)        $(DIM)Convert to Core ML .mlpackage (iOS 17+)$(RESET)\n"
+	@printf "  $(CYAN)quantize$(RESET)      $(DIM)4-bit quantize → model/quantized/$(RESET)\n"
+	@printf "  $(CYAN)gguf$(RESET)          $(DIM)Export to GGUF (llama.cpp / Ollama)$(RESET)\n"
+	@printf "\n"
 
 install:
 	uv sync --group dev
