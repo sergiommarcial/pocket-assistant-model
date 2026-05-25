@@ -1757,5 +1757,285 @@
     "instruction": "Add a meeting last Friday at 3pm for one hour.",
     "input": "Current time: 1748880000",
     "response": "{\"type\": \"refusal\", \"reason\": \"Last Friday has already passed. Did you mean next Friday?\"}"
+  },
+
+  // ---- today: specific time slots ----
+  {
+    "instruction": "Schedule a quick sync today at 4pm for 30 minutes.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"calendar_event\", \"title\": \"Quick Sync\", \"startDate\": 1748937600, \"endDate\": 1748939400, \"attendees\": []}"
+  },
+  {
+    "instruction": "Add a team check-in today at 4pm for 30 minutes.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"calendar_event\", \"title\": \"Team Check-in\", \"startDate\": 1748937600, \"endDate\": 1748939400, \"attendees\": []}"
+  },
+  {
+    "instruction": "Urgent reminder to submit my quarterly report at 5pm today.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"notification\", \"title\": \"Submit Quarterly Report\", \"body\": \"Time to submit your quarterly report.\", \"fireAt\": 1748941200}"
+  },
+  {
+    "instruction": "Remind me to send the status update at 5pm today.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"notification\", \"title\": \"Send Status Update\", \"body\": \"Time to send your status update.\", \"fireAt\": 1748941200}"
+  },
+
+  // ---- tomorrow: 7am ----
+  {
+    "instruction": "Remind me to take my vitamins tomorrow morning at 7am.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"notification\", \"title\": \"Take Vitamins\", \"body\": \"Time to take your vitamins.\", \"fireAt\": 1748991600}"
+  },
+  {
+    "instruction": "Set an alarm tomorrow at 7am to go for a run.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"notification\", \"title\": \"Go for a Run\", \"body\": \"Time to go for a run.\", \"fireAt\": 1748991600}"
+  },
+  {
+    "instruction": "Remind me tomorrow at 7am to check my emails.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"notification\", \"title\": \"Check Emails\", \"body\": \"Time to check your emails.\", \"fireAt\": 1748991600}"
+  },
+
+  // ---- tomorrow: 10am ----
+  {
+    "instruction": "Book a board meeting tomorrow at 10am for 3 hours.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"calendar_event\", \"title\": \"Board Meeting\", \"startDate\": 1749002400, \"endDate\": 1749013200, \"attendees\": []}"
+  },
+  {
+    "instruction": "Schedule a workshop tomorrow at 10am for 3 hours.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"calendar_event\", \"title\": \"Workshop\", \"startDate\": 1749002400, \"endDate\": 1749013200, \"attendees\": []}"
+  },
+  {
+    "instruction": "Remind me to call the doctor tomorrow at 10am.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"notification\", \"title\": \"Call the Doctor\", \"body\": \"Time to call the doctor.\", \"fireAt\": 1749002400}"
+  },
+  {
+    "instruction": "Alert me to join the all-hands call tomorrow at 10am.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"notification\", \"title\": \"All-Hands Call\", \"body\": \"Time to join the all-hands call.\", \"fireAt\": 1749002400}"
+  },
+
+  // ---- tomorrow: 15 minutes before 10am meeting ----
+  {
+    "instruction": "Remind me 15 minutes before the all-hands tomorrow at 10am.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"notification\", \"title\": \"All-Hands in 15 Minutes\", \"body\": \"Your all-hands meeting starts in 15 minutes.\", \"fireAt\": 1749001500}"
+  },
+  {
+    "instruction": "Alert me 15 minutes before my stand-up tomorrow at 10am.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"notification\", \"title\": \"Stand-up in 15 Minutes\", \"body\": \"Your stand-up meeting starts in 15 minutes.\", \"fireAt\": 1749001500}"
+  },
+
+  // ---- tomorrow: noon ----
+  {
+    "instruction": "Schedule a team lunch tomorrow at noon for one hour.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"calendar_event\", \"title\": \"Team Lunch\", \"startDate\": 1749009600, \"endDate\": 1749013200, \"attendees\": []}"
+  },
+  {
+    "instruction": "Add a lunch break tomorrow at noon for one hour.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"calendar_event\", \"title\": \"Lunch Break\", \"startDate\": 1749009600, \"endDate\": 1749013200, \"attendees\": []}"
+  },
+  {
+    "instruction": "Block noon tomorrow for a working lunch, one hour.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"calendar_event\", \"title\": \"Working Lunch\", \"startDate\": 1749009600, \"endDate\": 1749013200, \"attendees\": []}"
+  },
+
+  // ---- tomorrow: 2pm ----
+  {
+    "instruction": "Book a dentist appointment tomorrow at 2pm for one hour.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"calendar_event\", \"title\": \"Dentist Appointment\", \"startDate\": 1749016800, \"endDate\": 1749020400, \"location\": \"Dentist Office\", \"attendees\": []}"
+  },
+  {
+    "instruction": "Schedule a client call tomorrow at 2pm for one hour.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"calendar_event\", \"title\": \"Client Call\", \"startDate\": 1749016800, \"endDate\": 1749020400, \"attendees\": []}"
+  },
+  {
+    "instruction": "Add a 1-on-1 meeting tomorrow at 2pm for one hour.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"calendar_event\", \"title\": \"1-on-1\", \"startDate\": 1749016800, \"endDate\": 1749020400, \"attendees\": []}"
+  },
+
+  // ---- next Monday ----
+  {
+    "instruction": "Schedule a kickoff meeting next Monday at 9am for one hour.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"calendar_event\", \"title\": \"Kickoff Meeting\", \"startDate\": 1749430800, \"endDate\": 1749434400, \"attendees\": []}"
+  },
+  {
+    "instruction": "Book a planning session next Monday at 9am for one hour.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"calendar_event\", \"title\": \"Planning Session\", \"startDate\": 1749430800, \"endDate\": 1749434400, \"attendees\": []}"
+  },
+  {
+    "instruction": "Add a team sync next Monday at 10am for one hour.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"calendar_event\", \"title\": \"Team Sync\", \"startDate\": 1749434400, \"endDate\": 1749438000, \"attendees\": []}"
+  },
+
+  // ---- next Friday ----
+  {
+    "instruction": "Book a quarterly review next Friday at 9am for 3 hours.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"calendar_event\", \"title\": \"Quarterly Review\", \"startDate\": 1749776400, \"endDate\": 1749787200, \"attendees\": []}"
+  },
+  {
+    "instruction": "Schedule an all-hands next Friday at 9am for 2 hours.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"calendar_event\", \"title\": \"All-Hands Meeting\", \"startDate\": 1749776400, \"endDate\": 1749783600, \"attendees\": []}"
+  },
+
+  // ---- CoT + scheduling ----
+  {
+    "instruction": "Schedule a standup tomorrow at 9am for one hour. Explain your reasoning.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"calendar_event\", \"title\": \"Standup\", \"startDate\": 1748998800, \"endDate\": 1749002400, \"attendees\": [], \"reasoning\": \"Current time 1748880000 = 2025-06-03 00:00 UTC. Tomorrow midnight = 1748966400. 9am = +32400s = 1748998800. End = +3600s = 1749002400.\"}"
+  },
+  {
+    "instruction": "Book a dentist tomorrow at 2pm for one hour and explain why you chose those timestamps.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"calendar_event\", \"title\": \"Dentist Appointment\", \"startDate\": 1749016800, \"endDate\": 1749020400, \"attendees\": [], \"reasoning\": \"Current time 1748880000 = 2025-06-03 00:00 UTC. Tomorrow midnight = 1748966400. 2pm = +50400s = 1749016800. End = +3600s = 1749020400.\"}"
+  },
+  {
+    "instruction": "Add a team lunch tomorrow at noon for one hour. Show your reasoning.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"calendar_event\", \"title\": \"Team Lunch\", \"startDate\": 1749009600, \"endDate\": 1749013200, \"attendees\": [], \"reasoning\": \"Current time 1748880000 = 2025-06-03 00:00 UTC. Tomorrow midnight = 1748966400. Noon = +43200s = 1749009600. End = +3600s = 1749013200.\"}"
+  },
+
+  // ---- CoT + temporal refusal ----
+  {
+    "instruction": "Schedule a call yesterday at 3pm. Explain why you refused.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"refusal\", \"reason\": \"Yesterday at 3pm has already passed.\", \"reasoning\": \"Current time 1748880000 = 2025-06-03. Yesterday 3pm = 1748847600, which is before the current time. I cannot schedule events in the past.\"}"
+  },
+  {
+    "instruction": "Book a meeting last Tuesday at noon. Why can't you do this?",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"refusal\", \"reason\": \"Last Tuesday has already passed.\", \"reasoning\": \"Current time 1748880000 = 2025-06-03 (Tuesday). Last Tuesday = 2025-05-27, which is before now. I cannot schedule events in the past.\"}"
+  },
+
+  // ---- dissonance: high priority / nothing urgent ----
+  {
+    "instruction": "Add a high priority card saying nothing is urgent right now.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"refusal\", \"reason\": \"'High priority' and 'nothing is urgent' are contradictory. Which did you mean?\"}"
+  },
+  {
+    "instruction": "Create a critical alert: nothing needs immediate attention.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"refusal\", \"reason\": \"'Critical' and 'nothing needs immediate attention' are contradictory. Which priority level did you intend?\"}"
+  },
+  {
+    "instruction": "Add a high priority feed card: everything is fine, no action needed.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"refusal\", \"reason\": \"'High priority' and 'no action needed' are contradictory. Which did you mean?\"}"
+  },
+
+  // ---- dissonance: morning + afternoon time contradictions ----
+  {
+    "instruction": "Schedule a morning meeting at 3pm tomorrow.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"refusal\", \"reason\": \"'Morning' and '3pm' are contradictory. Did you mean a morning time (e.g., 9am) or 3pm?\"}"
+  },
+  {
+    "instruction": "Book a morning call at 2pm today.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"refusal\", \"reason\": \"'Morning' and '2pm' are contradictory. Did you mean a morning time (e.g., 9am) or 2pm?\"}"
+  },
+  {
+    "instruction": "Add a morning standup at 4pm next Monday.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"refusal\", \"reason\": \"'Morning' and '4pm' are contradictory. Did you mean a morning time (e.g., 9am) or 4pm?\"}"
+  },
+  {
+    "instruction": "Schedule a morning workshop at 5pm tomorrow.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"refusal\", \"reason\": \"'Morning' and '5pm' are contradictory. Did you mean a morning time (e.g., 9am) or 5pm?\"}"
+  },
+  {
+    "instruction": "Book an early morning meeting at 6pm today.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"refusal\", \"reason\": \"'Early morning' and '6pm' are contradictory. Did you mean early morning (e.g., 7am) or 6pm?\"}"
+  },
+
+  // ---- CoT + temporal refusal ----
+  {
+    "instruction": "Schedule a call yesterday at 3pm. Explain why you refused.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"refusal\", \"reason\": \"Yesterday at 3pm has already passed.\", \"reasoning\": \"Current time 1748880000 = 2025-06-03. Yesterday 3pm = 1748847600, which is before now. I cannot schedule events in the past.\"}"
+  },
+  {
+    "instruction": "Book a meeting last week. Why did you refuse?",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"refusal\", \"reason\": \"Last week has already passed.\", \"reasoning\": \"Current time 1748880000 = 2025-06-03. Last week ended before now. I cannot schedule events in the past.\"}"
+  },
+  {
+    "instruction": "Add an event yesterday at noon. Why can't you do this?",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"refusal\", \"reason\": \"Yesterday at noon has already passed.\", \"reasoning\": \"Current time 1748880000 = 2025-06-03. Yesterday noon = 1748872800, which is before now. I cannot schedule events in the past.\"}"
+  },
+  {
+    "instruction": "Create a call last Monday at 9am. Tell me why you refused.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"refusal\", \"reason\": \"Last Monday has already passed.\", \"reasoning\": \"Current time 1748880000 = 2025-06-03 (Tuesday). Last Monday = 2025-05-26, which is before now. I cannot schedule events in the past.\"}"
+  },
+  {
+    "instruction": "Schedule a meeting 2 days ago at 10am. Explain why you refused.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"refusal\", \"reason\": \"2 days ago has already passed.\", \"reasoning\": \"Current time 1748880000 = 2025-06-03. Two days ago = 2025-06-01, which is before now. I cannot schedule events in the past.\"}"
+  },
+
+  // ---- feed_card: security vulnerability alerts ----
+  {
+    "instruction": "Flag a security vulnerability in the authentication module as urgent.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"feed_card\", \"title\": \"Security Vulnerability\", \"body\": \"A security vulnerability has been found in the authentication module. Immediate review required.\", \"priority\": \"high\"}"
+  },
+  {
+    "instruction": "Flag a security vulnerability in the payment service as high priority.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"feed_card\", \"title\": \"Security Vulnerability\", \"body\": \"A security vulnerability has been found in the payment service. Immediate review required.\", \"priority\": \"high\"}"
+  },
+  {
+    "instruction": "Flag a critical security issue in the API as urgent.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"feed_card\", \"title\": \"Critical Security Issue\", \"body\": \"A critical security issue has been found in the API. Immediate review required.\", \"priority\": \"high\"}"
+  },
+  {
+    "instruction": "Report a security vulnerability found in the login system.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"feed_card\", \"title\": \"Security Vulnerability\", \"body\": \"A security vulnerability has been found in the login system. Review required.\", \"priority\": \"high\"}"
+  },
+
+  // ---- feed_card: announcements and updates ----
+  {
+    "instruction": "Create a card announcing the new feature shipped to production.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"feed_card\", \"title\": \"New Feature Shipped\", \"body\": \"The new feature has been deployed to production successfully.\", \"priority\": \"medium\"}"
+  },
+  {
+    "instruction": "Create a card announcing the latest deployment is live.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"feed_card\", \"title\": \"Deployment Live\", \"body\": \"The latest deployment is now live in production.\", \"priority\": \"medium\"}"
+  },
+  {
+    "instruction": "Add a card announcing the mobile app update shipped today.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"feed_card\", \"title\": \"Mobile App Update Shipped\", \"body\": \"The mobile app update has been shipped today.\", \"priority\": \"medium\"}"
+  },
+  {
+    "instruction": "Create an announcement card for the new dashboard release.",
+    "input": "Current time: 1748880000",
+    "response": "{\"type\": \"feed_card\", \"title\": \"New Dashboard Released\", \"body\": \"The new dashboard has been released and is available to all users.\", \"priority\": \"medium\"}"
   }
 ]

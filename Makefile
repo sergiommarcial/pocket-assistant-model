@@ -1,4 +1,4 @@
-.PHONY: install dataset test train fuse quantize gguf export test-export probe help
+.PHONY: install dataset test train fuse quantize gguf export test-export probe full_train help
 .DEFAULT_GOAL := help
 
 CYAN   := \033[36m
@@ -20,6 +20,8 @@ help:
 	@printf "  $(CYAN)test$(RESET)          $(DIM)Run pytest unit tests$(RESET)\n"
 	@printf "  $(CYAN)probe$(RESET)         $(DIM)Run 76 behavioral probes against model/merged$(RESET)\n"
 	@printf "  $(CYAN)test-export$(RESET)   $(DIM)Smoke-test .mlpackage against 3 prompts$(RESET)\n"
+	@printf "\n$(YELLOW)Pipelines$(RESET)\n"
+	@printf "  $(CYAN)full_train$(RESET)    $(DIM)dataset → train → fuse → probe$(RESET)\n"
 	@printf "\n$(YELLOW)Export$(RESET)\n"
 	@printf "  $(CYAN)export$(RESET)        $(DIM)Convert to Core ML .mlpackage (iOS 17+)$(RESET)\n"
 	@printf "  $(CYAN)quantize$(RESET)      $(DIM)4-bit quantize → model/quantized/$(RESET)\n"
@@ -70,3 +72,6 @@ test-export:
 
 probe:
 	uv run python export/probe.py --model model/merged
+
+full_train:
+	make dataset && make train && make fuse && make probe
