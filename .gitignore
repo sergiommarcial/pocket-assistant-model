@@ -1,0 +1,14 @@
+model/adapters/
+model/merged/
+model/quantized/
+model/blog-editor.mlpackage/
+model/blog-editor-q4.gguf
+data/train.jsonl
+data/valid.jsonl
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+*.log
+*.pt
+*.pth

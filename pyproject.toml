@@ -1,0 +1,24 @@
+[project]
+name = "blog-editor-model"
+version = "0.1.0"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "mlx-lm>=0.15",
+    "coremltools>=7.2",
+    "optimum[coreml]>=1.20",
+    "transformers>=4.40",
+    "torch>=2.2",
+    "gguf>=0.19.0",
+]
+
+[tool.uv]
+python-preference = "only-managed"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]

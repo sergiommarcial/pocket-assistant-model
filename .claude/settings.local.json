@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rg -n 'public init' /Users/sergio/Documents/confidential/repos/mlx-swift-lm/Libraries/MLXLMCommon/UserInput.swift | head -10)",
+      "Read(//Users/sergio/Documents/confidential/repos/mlx-swift-lm/Libraries/MLXLMCommon/**)"
+    ]
+  }
+}

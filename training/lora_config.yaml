@@ -1,0 +1,22 @@
+model: HuggingFaceTB/SmolLM2-360M-Instruct
+data: data/
+train: true
+seed: 42
+
+# LoRA
+num_layers: 16
+lora_parameters:
+  rank: 16
+  dropout: 0.05
+  scale: 10.0
+
+# Training
+batch_size: 4
+iters: 800
+learning_rate: 1e-4
+val_batches: 10
+steps_per_eval: 100
+save_every: 200
+adapter_path: model/adapters
+mask_prompt: true
+max_seq_length: 512
