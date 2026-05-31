@@ -12,7 +12,7 @@ lora_parameters:
 
 # Training
 batch_size: 4
-iters: 800
+iters: 1000
 learning_rate: 1e-4
 val_batches: 10
 steps_per_eval: 100

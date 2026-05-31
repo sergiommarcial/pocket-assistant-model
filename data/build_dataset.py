@@ -38,7 +38,7 @@ def strip_js_comments(text: str) -> str:
     return "".join(result)
 
 
-SYSTEM = "You are a personal assistant running on-device. Given the current time, respond only with valid JSON matching one of these types: calendar_event, notification, feed_card, or refusal. Never output anything outside the JSON object. If the user asks you to explain your reasoning, add a \"reasoning\" field to the JSON object."
+SYSTEM = (Path(__file__).parent / "system_prompt.txt").read_text(encoding="utf-8").strip()
 
 
 def validate_record(record: dict[str, Any]) -> None:
@@ -78,19 +78,40 @@ def load_json_file(path: Path) -> list[dict]:
     return json.loads(strip_js_comments(text))
 
 
+PATCHES_FILE = "targeted_patches.json"
+
+
 def main(data_dir: Path = Path("data"), train_n: int = TRAIN_N) -> None:
     raw_dir = data_dir / "raw"
     generated_dir = data_dir / "generated"
     generated_dir.mkdir(parents=True, exist_ok=True)
 
-    records: list[dict] = []
+    # targeted_patches.json always goes to train — these are failure-fix records
+    # that must be in the training set to have any effect.
+    patches_path = raw_dir / PATCHES_FILE
+    patches: list[dict] = []
+    if patches_path.exists():
+        patches = load_json_file(patches_path)
+        for record in patches:
+            validate_record(record)
+
+    base_records: list[dict] = []
     for json_file in sorted(raw_dir.glob("*.json")) + sorted(generated_dir.glob("*.json")):
+        if json_file == patches_path:
+            continue
         batch = load_json_file(json_file)
         for record in batch:
             validate_record(record)
-        records.extend(batch)
+        base_records.extend(batch)
 
-    train_records, valid_records = build_splits(records, train_n=train_n)
+    base_train_n = max(0, train_n - len(patches))
+    base_train, valid_records = build_splits(base_records, train_n=base_train_n)
+    # Shuffle patches into base_train so they're distributed across the epoch,
+    # not front-loaded — front-loading can bias early gradient updates.
+    combined = patches + base_train
+    random.seed(43)
+    random.shuffle(combined)
+    train_records = combined
 
     (data_dir / "train.jsonl").write_text(
         "\n".join(json.dumps(to_chatml(r, SYSTEM)) for r in train_records) + "\n",
@@ -100,7 +121,7 @@ def main(data_dir: Path = Path("data"), train_n: int = TRAIN_N) -> None:
         "\n".join(json.dumps(to_chatml(r, SYSTEM)) for r in valid_records) + "\n",
         encoding="utf-8",
     )
-    print(f"Written: {len(train_records)} train, {len(valid_records)} valid")
+    print(f"Written: {len(train_records)} train ({len(patches)} patches + {len(base_train)} base), {len(valid_records)} valid")
 
 
 if __name__ == "__main__":
