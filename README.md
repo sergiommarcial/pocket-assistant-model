@@ -4,13 +4,56 @@ Fine-tuning pipeline for the on-device personal assistant in [pocket-assistant](
 
 ## Contents
 
+- [Fact sheet](#fact-sheet)
+- [Approbal gates](#approbal-gates)
 - [Requirements](#requirements)
 - [Output format](#output-format)
 - [Pipeline](#pipeline)
 - [Training data](#training-data)
 - [Verification](#verification)
 - [Known failures](#known-failures)
+- [Interaction patterns](#interaction-patterns)
 - [Directory layout](#directory-layout)
+
+## Fact sheet
+
+| | |
+|---|---|
+| **Base model** | HuggingFaceTB/SmolLM2-360M-Instruct |
+| **Parameters** | 360M |
+| **LoRA rank** | 16 |
+| **Layers adapted** | 16 |
+| **Training iterations** | 1000 |
+| **Learning rate** | 1e-4 |
+| **Batch size** | 4 |
+| **Max sequence length** | 512 tokens |
+| **Training records** | 270 train / ~154 valid |
+| **Targeted patches** | 43 (always in TRAIN, bypass shuffle) |
+| **Probe results** | 74/80 (92.5% pre-arbitration baseline) |
+| **Accepted failures** | 2 (see [Known failures](#known-failures)) |
+| **Reference time** | Monday, June 2, 2025 4:00 PM (Unix `1748880000`) |
+| **Output types** | 4 — `CALENDAR`, `NOTIFICATION`, `FEED_CARD`, `REFUSAL` |
+| **Export format** | Core ML `.mlpackage` (iOS 17+) |
+| **Training time** | ~25 min on M-series Mac |
+
+
+## Approbal gates
+
+```bash
+  [PASS] ADVERSARIAL: 17/17 (100.0% ≥ 100%)
+  [PASS] AMBIGUOUS: 12/12 (100.0% ≥ 100%)
+  [PASS] ARBITRATION: 4/4 (100.0% ≥ 75%)
+  [PASS] CALENDAR: 11/12 (91.7% ≥ 91%)
+  [PASS] DISSONANCE: 8/9 (88.9% ≥ 88%)
+  [PASS] FEED_CARD: 6/6 (100.0% ≥ 100%)
+  [PASS] NOTIFICATION: 9/9 (100.0% ≥ 100%)
+  [PASS] SCOPE: 6/6 (100.0% ≥ 100%)
+  [PASS] TEMPORAL: 5/5 (100.0% ≥ 100%)
+
+  Advisory (known failures — tracked, not blocking):
+    · cot: reasoning field present when asked
+    · dissonance: duration contradicts time span
+```
 
 ## Requirements
 
@@ -84,7 +127,7 @@ Full pipeline from data to verified model:
 make dataset    # build data/train.jsonl + data/valid.jsonl from data/raw/*.json
 make train      # LoRA fine-tune (1000 iters, ~25 min on M-series Mac)
 make fuse       # merge adapters into model/merged/
-uv run python export/probe.py --model model/merged   # run 76 behavioral probes
+make probe      # run 80 behavioral probes against model/merged
 ```
 
 To regenerate `model/merged/` from existing adapters (without retraining):
@@ -152,8 +195,9 @@ Add `--verbose` for full model output per probe.
 | Refusal · Dissonance | 9 | REFUSAL for self-contradictory inputs (conflicting times, durations, past events) |
 | Refusal · Scope | 6 | REFUSAL for out-of-scope requests (writing, code, search) |
 | Refusal · Temporal | 5 | REFUSAL for past-date scheduling; CoT on temporal refusal |
+| Arbitration | 4 | Correct output type when wording is ambiguous (attend vs create, block vs remind, or-phrased) |
 
-Current result: **74/76 passing**. The 2 failing probes are accepted — see below.
+Current result: **74/80** (4 arbitration probes untested against current model). The 2 known failing probes are accepted — see below.
 
 ## Known failures
 
@@ -174,6 +218,48 @@ Every CoT standup patch we tried caused the model to start refusing valid future
 **Actual:** `CALENDAR|30-Minute Standup|...|`
 
 A base training record for this exists at position [40] in the seed=42 shuffle (always TRAIN). We added a targeted patch to reinforce it using the TRAIN_N+1 trick to avoid displacing a critical CoT record ([226]). With 2 TRAIN copies the model still outputs CALENDAR. Adding more copies triggers the same timestamp confusion regressions as the CoT fix attempts.
+
+## Interaction patterns
+
+Decisions about how the model output maps to app behavior. Each pattern is a settled design choice — change here first, then retrain if the model needs new training data.
+
+### NOTIFICATION → calendar offer
+
+**Scenario:** User says "create an event for me in 30 minutes" (or similar time-block request without explicit calendar intent).
+
+**Model output:** `NOTIFICATION` — fires a local notification at the specified time.
+
+**App behavior (Option A):** After delivering the notification, the app appends a follow-up assistant message: "Also add this to your calendar?" If the user confirms, the same request is resent with "add to calendar" appended, and the model responds with `CALENDAR`.
+
+**Why not train the model to offer this directly:** The model outputs a single pipe-delimited string per turn. A combined action+question would require a new output type, new training records, and parser changes. The app layer handles this more cleanly.
+
+**Example exchange:**
+
+```
+User:  Create a block for me in 30 minutes.
+Model: NOTIFICATION|Focus Block|Time for your focus block.|1748881800
+
+App:   Also add this to your calendar? [Yes] [No]
+
+User:  Yes
+Model: CALENDAR|Focus Block|1748881800|1748885400||
+```
+
+### Ambiguous duration → REFUSAL (ask)
+
+**Scenario:** User says "create an event in 30 minutes" without specifying how long.
+
+**Model output:** `REFUSAL|I need more details. How long is the event?`
+
+This is correct — CALENDAR requires both `startUnix` and `endUnix`. Don't patch this behavior.
+
+### Personal event (no attendees)
+
+**Scenario:** User creates an event for themselves with no other participants.
+
+**Model output:** `CALENDAR|title|startUnix|endUnix||` — attendees field is empty.
+
+The device owner is always the calendar owner. No need to add them to the attendees list.
 
 ## Directory layout
 

@@ -10,7 +10,7 @@ from transformers import AutoTokenizer
 
 SYSTEM = Path("data/system_prompt.txt").read_text().strip()
 
-CURRENT_TIME = 1748880000  # fixed reference for smoke tests
+CURRENT_TIME = "Monday, June 2, 2025 4:00 PM"  # must match training format
 
 TEST_CASES = [
     (

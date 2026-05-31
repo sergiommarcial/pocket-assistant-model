@@ -83,8 +83,8 @@ test-export: check-python ## Smoke-test .mlpackage against 3 prompts
 		--tokenizer model/merged \
 		--max-length 512
 
-probe: check-python ## Inspect model/merged weights and config
-	$(UV_RUN) python export/probe.py --model model/merged
+probe: check-python ## Run 80 behavioral probes against model/merged
+	$(UV_RUN) python -m export.probe --model model/merged
 
 full_train: ## Run full pipeline: dataset → train → fuse → probe
 	$(MAKE) dataset && $(MAKE) train && $(MAKE) fuse && $(MAKE) probe

@@ -21,6 +21,7 @@ Always invoke these skills before acting:
 - **Changes as small as possible** — one concern per diff; no opportunistic refactors or cleanup alongside feature work
 - **No summaries** — don't summarize what was done at the end of a response; the diff speaks for itself
 - **No unnecessary tasks** — don't add error handling, abstractions, tests, or comments beyond what was explicitly asked for
+- **Document new scenarios** — every clarified behavior or new interaction pattern must be added to README.md with an example before the work is considered done
 
 ## Git restrictions
 
@@ -104,7 +105,7 @@ Base: `HuggingFaceTB/SmolLM2-360M-Instruct`. LoRA adapts 16 transformer layers (
 
 ## Coding style
 
-Follow **SOLID**, **YAGNI**, and **KISS**. Prefer the simplest thing that works.
+Follow **SOLID**, **YAGNI**, **KISS**, **Clean Code**, and **The Pragmatic Programmer**. Prefer the simplest thing that works.
 
 - Python 3.11; strict typing preferred (`from __future__ import annotations`)
 - No inline comments explaining *what* code does — only *why* (hidden constraint, workaround, invariant)
