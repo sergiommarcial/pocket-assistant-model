@@ -61,7 +61,7 @@ def to_chatml(record: dict[str, Any], system: str) -> dict:
     }
 
 
-TRAIN_N = 270
+TRAIN_N = 284
 
 
 def build_splits(

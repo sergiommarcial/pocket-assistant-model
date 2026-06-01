@@ -2,132 +2,132 @@
   {
     "instruction": "Schedule a team standup tomorrow at 9am for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Team Standup|1748998800|1749002400||"
+    "response": "CALENDAR|Team Standup|tomorrow|32400|36000||"
   },
   {
     "instruction": "Book a dentist appointment next Monday at 2pm for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Dentist Appointment|1749448800|1749452400|Dentist Office|"
+    "response": "CALENDAR|Dentist Appointment|Sunday|50400|54000|Dentist Office|"
   },
   {
     "instruction": "Add a lunch meeting with Sarah tomorrow at noon for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Lunch with Sarah|1749009600|1749013200||Sarah"
+    "response": "CALENDAR|Lunch with Sarah|tomorrow|43200|46800||"
   },
   {
     "instruction": "Schedule a 30-minute 1:1 with Alex today at 4pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|1:1 with Alex|1748937600|1748939400||Alex"
+    "response": "CALENDAR|1:1 with Alex||57600|59400||"
   },
   {
     "instruction": "Block tomorrow from 2pm to 4pm for a project review.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Project Review|1749016800|1749024000||"
+    "response": "CALENDAR|Project Review|tomorrow|50400|57600||"
   },
   {
     "instruction": "Add a conference call tomorrow at 10am for one hour with ana@example.com and tom@example.com.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Conference Call|1749002400|1749006000||ana@example.com,tom@example.com"
+    "response": "CALENDAR|Conference Call|tomorrow|36000|39600||ana@example.com,tom@example.com"
   },
   {
     "instruction": "Schedule a team dinner next Monday at 7pm for two hours.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Team Dinner|1749466800|1749473580||"
+    "response": "CALENDAR|Team Dinner|Sunday|68400|75180||"
   },
   {
     "instruction": "Add a gym session tomorrow at 7am for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Gym|1748991600|1748995200||"
+    "response": "CALENDAR|Gym|tomorrow|25200|28800||"
   },
   {
     "instruction": "Create an event for my flight departure next Monday at 6am at JFK airport.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Flight Departure|1749420000|1749423600|JFK Airport|"
+    "response": "CALENDAR|Flight Departure|Sunday|21600|25200|JFK Airport|"
   },
   {
     "instruction": "Book a doctor appointment tomorrow at 11am for 30 minutes at City Medical Center.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Doctor Appointment|1749006000|1749007800|City Medical Center|"
+    "response": "CALENDAR|Doctor Appointment|tomorrow|39600|41400|City Medical Center|"
   },
   {
     "instruction": "Schedule a two-hour marketing sync next Monday at 10am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Marketing Sync|1749434400|1749441600||"
+    "response": "CALENDAR|Marketing Sync|Sunday|36000|43200||"
   },
   {
     "instruction": "Add a birthday dinner for Mom today at 7pm for two hours.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Birthday Dinner for Mom|1748948400|1748955600||Mom"
+    "response": "CALENDAR|Birthday Dinner for Mom||68400|75600||"
   },
   {
     "instruction": "Block tomorrow from 8am to 5pm for an off-site workshop.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Off-site Workshop|1748995200|1749027600||"
+    "response": "CALENDAR|Off-site Workshop|tomorrow|28800|61200||"
   },
   {
     "instruction": "Remind me to take my medication at 8pm today.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Take Medication|Time to take your medication.|1748894400"
+    "response": "REFUSAL|I can't set reminders in the past. That time has already passed."
   },
   {
     "instruction": "Set a reminder to call the plumber in 2 hours.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Call the Plumber|Time to call the plumber.|1748887200"
+    "response": "NOTIFICATION|Call the Plumber|Time to call the plumber.||7200"
   },
   {
     "instruction": "Remind me to send the project report by 5pm today.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Send Project Report|Send the project report before 5pm.|1748941200"
+    "response": "NOTIFICATION|Send Project Report|Send the project report before 5pm.||3600"
   },
   {
     "instruction": "Alert me to leave for the airport tomorrow at 5am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Leave for Airport|Time to leave for the airport.|1748984400"
+    "response": "NOTIFICATION|Leave for Airport|Time to leave for the airport.|tomorrow|18000"
   },
   {
     "instruction": "Remind me to pick up the kids at 3pm today.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Pick Up Kids|Time to pick up the kids.|1748934000"
+    "response": "REFUSAL|I can't set reminders in the past. That time has already passed."
   },
   {
     "instruction": "Set a reminder for my team standup tomorrow at 9am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Team Standup|Team standup starts now.|1748998800"
+    "response": "NOTIFICATION|Team Standup|Team standup starts now.|tomorrow|32400"
   },
   {
     "instruction": "Set an alarm for 6am tomorrow.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Wake Up Alarm|Good morning!|1748988000"
+    "response": "NOTIFICATION|Wake Up Alarm|Good morning!|tomorrow|21600"
   },
   {
     "instruction": "Remind me to reply to John's email in 30 minutes.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Reply to John|Reply to John's email now.|1748881800"
+    "response": "NOTIFICATION|Reply to John|Reply to John's email now.||1800"
   },
   {
     "instruction": "Notify me when it's 6pm today.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|6pm Check-in|It's 6pm.|1748944800"
+    "response": "NOTIFICATION|6pm Check-in|It's 6pm.||7200"
   },
   {
     "instruction": "Remind me to submit the expense form before end of business today.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Submit Expense Form|Submit the expense form before end of business.|1748941200"
+    "response": "NOTIFICATION|Submit Expense Form|Submit the expense form before end of business.||3600"
   },
   {
     "instruction": "Set a reminder for my anniversary dinner reservation tonight at 7:30pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Anniversary Dinner|Head to your anniversary dinner reservation.|1748950200"
+    "response": "NOTIFICATION|Anniversary Dinner|Head to your anniversary dinner reservation.||12600"
   },
   {
     "instruction": "Remind me to take a break in one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Take a Break|Time to step away from your desk.|1748883600"
+    "response": "NOTIFICATION|Take a Break|Time to step away from your desk.||3600"
   },
   {
     "instruction": "Remind me to water the plants tomorrow morning at 8am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Water the Plants|Time to water the plants.|1748995200"
+    "response": "NOTIFICATION|Water the Plants|Time to water the plants.|tomorrow|28800"
   },
   {
     "instruction": "Note that the quarterly report is ready for review.",
@@ -270,7 +270,7 @@
     "response": "REFUSAL|I handle one action at a time. Which would you like first: the calendar event or the feed card?"
   },
   {
-    "instruction": "Create a reminder for my doctor appointment tomorrow at 11am and add it to my calendar.",
+    "instruction": "Create a notification for my haircut next Thursday at 2pm and also block that time on my calendar.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
     "response": "REFUSAL|I handle one action at a time. Which would you like first: the calendar event or the reminder?"
   },
@@ -352,7 +352,7 @@
   {
     "instruction": "Add an event at 1748700000.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "REFUSAL|The requested time (1748700000) is 180,000 seconds in the past. Did you mean a future time?"
+    "response": "REFUSAL|The time you specified has already passed. Did you mean a future time?"
   },
   {
     "instruction": "Book a meeting last Monday at 10am.",
@@ -367,7 +367,7 @@
   {
     "instruction": "Set a reminder for 5 minutes ago.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "REFUSAL|Five minutes ago (1748879700) has already passed. Would you like a reminder for 5 minutes from now instead?"
+    "response": "REFUSAL|Five minutes ago has already passed. Would you like a reminder for 5 minutes from now instead?"
   },
   {
     "instruction": "Create an event two weeks ago at noon.",
@@ -377,7 +377,7 @@
   {
     "instruction": "Remind me at 1748870000.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "REFUSAL|The requested time (1748870000) is 10,000 seconds in the past. Would you like a reminder in the future?"
+    "response": "REFUSAL|The time you specified has already passed. Would you like a reminder in the future?"
   },
   {
     "instruction": "Book a team lunch for last Friday.",
@@ -427,27 +427,27 @@
   {
     "instruction": "Set a reminder for 1748870000.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "REFUSAL|The requested time (1748870000) is already past — it's 10,000 seconds before the current time (1748880000)."
+    "response": "REFUSAL|The time you specified has already passed."
   },
   {
     "instruction": "Schedule a sync for today at 8am.",
-    "input": "Current time: Tuesday, June 3, 2025 4:00 AM",
-    "response": "REFUSAL|8am today (1748908800) has already passed — the current time is 1748923200 (noon). Did you mean tomorrow at 8am?"
+    "input": "Current time: Tuesday, June 3, 2025 12:00 PM",
+    "response": "REFUSAL|8am today has already passed. Did you mean tomorrow at 8am?"
   },
   {
     "instruction": "Book a call yesterday at 2pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "REFUSAL|Yesterday at 2pm (1748844000) has already passed. Did you mean tomorrow at 2pm?"
+    "response": "REFUSAL|Yesterday at 2pm has already passed. Did you mean tomorrow at 2pm?"
   },
   {
     "instruction": "Schedule a standup this morning at 9am.",
     "input": "Current time: Tuesday, June 3, 2025 12:00 PM",
-    "response": "REFUSAL|9am this morning (1748912400) has already passed — the current time is 1748952000 (8pm). Did you mean tomorrow at 9am?"
+    "response": "REFUSAL|9am this morning has already passed. Did you mean tomorrow at 9am?"
   },
   {
     "instruction": "Remind me at 6am today.",
-    "input": "Current time: Wednesday, June 4, 2025 2:00 AM",
-    "response": "REFUSAL|6am today (1748988000) has already passed — the current time is 1749002400 (10am). Did you mean 6am tomorrow?"
+    "input": "Current time: Wednesday, June 4, 2025 10:00 AM",
+    "response": "REFUSAL|6am today has already passed. Did you mean 6am tomorrow?"
   },
   {
     "instruction": "Add a gym session for last Friday at 7am.",
@@ -662,12 +662,12 @@
   {
     "instruction": "Schedule a team standup tomorrow at 9am for one hour. Explain your reasoning.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Team Standup|1748998800|1749002400|||REASON|Current time 1748880000 = 2025-06-02 16:00 UTC. Tomorrow midnight = +86400s = 1748966400. 9am = +32400s → startDate 1748998800. 1 hour later → endDate 1749002400."
+    "response": "CALENDAR|Team Standup|tomorrow|32400|36000|||REASON|Current time 1748880000 = 2025-06-02 16:00 UTC. Tomorrow midnight = +86400s = 1748966400. 9am = +32400s → startDate 1748998800. 1 hour later → endDate 1749002400."
   },
   {
     "instruction": "Remind me to take my medication at 8pm today. Why did you choose that fireAt value?",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Take Medication|Time to take your medication.|1748894400|REASON|8pm = 4 hours after 4:00 PM. 1748880000 + 14400 = 1748894400."
+    "response": "REFUSAL|I can't set reminders in the past. That time has already passed.|REASON|Current time is Monday June 2, 2025 4:00 PM. That time has already passed."
   },
   {
     "instruction": "Create a high priority feed card about the production outage. Walk me through your output.",
@@ -677,12 +677,12 @@
   {
     "instruction": "Book a dentist appointment next Monday at 2pm for one hour. How did you calculate the timestamps?",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Dentist Appointment|1749448800|1749452400|Dentist Office||REASON|Current time 1748880000 = Monday 2025-06-02. Next Monday = +6 days = +518400s = 1749398400. 2pm = +50400s → startDate 1749448800. 1 hour = +3600s → endDate 1749452400."
+    "response": "CALENDAR|Dentist Appointment|Sunday|50400|54000|Dentist Office||REASON|Current time 1748880000 = Monday 2025-06-02. Next Monday = +6 days = +518400s = 1749398400. 2pm = +50400s → startDate 1749448800. 1 hour = +3600s → endDate 1749452400."
   },
   {
     "instruction": "Remind me to pick up the kids at 3pm today. Explain your reasoning.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Pick Up Kids|Time to pick up the kids.|1748934000|REASON|3pm = 15 hours = 54000 seconds after midnight. 1748880000 + 54000 = 1748934000."
+    "response": "REFUSAL|I can't set reminders in the past. That time has already passed.|REASON|Current time is Monday June 2, 2025 4:00 PM. That time has already passed."
   },
   {
     "instruction": "Flag the client deadline moving to Friday as important. Show your reasoning.",
@@ -692,12 +692,12 @@
   {
     "instruction": "Add a gym session tomorrow at 7am for one hour. Walk me through the timestamps.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Gym|1748991600|1748995200|||REASON|Tomorrow midnight = 1748880000 + 86400 = 1748966400. 7am = +25200s → startDate 1748991600. 1 hour = +3600s → endDate 1748995200."
+    "response": "CALENDAR|Gym|tomorrow|25200|28800|||REASON|Tomorrow midnight = 1748880000 + 86400 = 1748966400. 7am = +25200s → startDate 1748991600. 1 hour = +3600s → endDate 1748995200."
   },
   {
     "instruction": "Set a reminder for my anniversary dinner reservation tonight at 7:30pm. Why did you choose that fireAt?",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Anniversary Dinner|Head to your anniversary dinner reservation.|1748950200|REASON|7:30pm = 19 hours 30 minutes = 70200 seconds after midnight. 1748880000 + 70200 = 1748950200."
+    "response": "NOTIFICATION|Anniversary Dinner|Head to your anniversary dinner reservation.||12600"
   },
   {
     "instruction": "Mark budget approval received as important. How did you decide the priority?",
@@ -707,7 +707,7 @@
   {
     "instruction": "Add a conference call tomorrow at 10am for one hour with ana@example.com and tom@example.com. Explain your output.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Conference Call|1749002400|1749006000||ana@example.com,tom@example.com|REASON|Tomorrow midnight = 1748966400. 10am = +36000s → startDate 1749002400. 1 hour = +3600s → endDate 1749006000. Attendees extracted from instruction."
+    "response": "CALENDAR|Conference Call|tomorrow|36000|39600||ana@example.com,tom@example.com|REASON|Tomorrow midnight = 1748966400. 10am = +36000s → startDate 1749002400. 1 hour = +3600s → endDate 1749006000. Attendees extracted from instruction."
   },
   {
     "instruction": "Schedule a call yesterday at 3pm. Explain why you refused.",
@@ -762,527 +762,527 @@
   {
     "instruction": "Book a 1-on-1 with my manager tomorrow at 8am for 30 minutes.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|1-on-1 with Manager|1748995200|1748997000||"
+    "response": "CALENDAR|1-on-1 with Manager|tomorrow|28800|30600||"
   },
   {
     "instruction": "Schedule a product review tomorrow at 11am for 90 minutes with sarah@example.com.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Product Review|1749006000|1749011400||sarah@example.com"
+    "response": "CALENDAR|Product Review|tomorrow|39600|45000||sarah@example.com"
   },
   {
     "instruction": "Add a design critique session tomorrow at 2pm for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Design Critique|1749016800|1749020400||"
+    "response": "CALENDAR|Design Critique|tomorrow|50400|54000||"
   },
   {
     "instruction": "Schedule a candidate interview tomorrow at 3pm for 45 minutes with hr@example.com.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Candidate Interview|1749020400|1749023100||hr@example.com"
+    "response": "CALENDAR|Candidate Interview|tomorrow|54000|56700||hr@example.com"
   },
   {
     "instruction": "Block tomorrow from 9:30am to 11:30am for sprint planning with dev@example.com.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Sprint Planning|1749000600|1749007800||dev@example.com"
+    "response": "CALENDAR|Sprint Planning|tomorrow|34200|41400||dev@example.com"
   },
   {
     "instruction": "Add a weekly sync tomorrow at 4pm for 30 minutes.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Weekly Sync|1749024000|1749025800||"
+    "response": "CALENDAR|Weekly Sync|tomorrow|57600|59400||"
   },
   {
     "instruction": "Schedule a demo call tomorrow at 10:30am for one hour with client@example.com.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Demo Call|1749004200|1749007800||client@example.com"
+    "response": "CALENDAR|Demo Call|tomorrow|37800|41400||client@example.com"
   },
   {
     "instruction": "Create a retrospective tomorrow at 1pm for 90 minutes.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Retrospective|1749013200|1749018600||"
+    "response": "CALENDAR|Retrospective|tomorrow|46800|52200||"
   },
   {
     "instruction": "Book a coffee chat tomorrow at 8:30am for 30 minutes with jane@example.com.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Coffee Chat|1748997000|1748998800||jane@example.com"
+    "response": "CALENDAR|Coffee Chat|tomorrow|30600|32400||jane@example.com"
   },
   {
     "instruction": "Schedule a team lunch tomorrow at noon for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Team Lunch|1749009600|1749013200||"
+    "response": "CALENDAR|Team Lunch|tomorrow|43200|46800||"
   },
   {
     "instruction": "Block tomorrow at 2:30pm for a 2-hour training session.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Training Session|1749018600|1749025800||"
+    "response": "CALENDAR|Training Session|tomorrow|52200|59400||"
   },
   {
     "instruction": "Add a kickoff call tomorrow at 9am for one hour with alice@example.com, bob@example.com, and carol@example.com.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Kickoff Call|1748998800|1749002400||alice@example.com,bob@example.com,carol@example.com"
+    "response": "CALENDAR|Kickoff Call|tomorrow|32400|36000||alice@example.com,bob@example.com,carol@example.com"
   },
   {
     "instruction": "Book a board meeting tomorrow at 10am for 3 hours.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Board Meeting|1749002400|1749013200||"
+    "response": "CALENDAR|Board Meeting|tomorrow|36000|46800||"
   },
   {
     "instruction": "Schedule a pair programming session tomorrow at 3pm for 2 hours with bob@example.com.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Pair Programming|1749020400|1749027600||bob@example.com"
+    "response": "CALENDAR|Pair Programming|tomorrow|54000|61200||bob@example.com"
   },
   {
     "instruction": "Add an offsite planning call tomorrow evening at 7pm for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Offsite Planning|1749034800|1749038400||"
+    "response": "CALENDAR|Offsite Planning|tomorrow|68400|72000||"
   },
   {
     "instruction": "Schedule a client check-in tomorrow at 11am for 30 minutes with client@example.com.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Client Check-In|1749006000|1749007800||client@example.com"
+    "response": "CALENDAR|Client Check-In|tomorrow|39600|41400||client@example.com"
   },
   {
     "instruction": "Create a code review session tomorrow at 4pm for 30 minutes.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Code Review|1749024000|1749025800||"
+    "response": "CALENDAR|Code Review|tomorrow|57600|59400||"
   },
   {
     "instruction": "Book a therapy appointment tomorrow at 5pm for 50 minutes.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Therapy|1749027600|1749030600||"
+    "response": "CALENDAR|Therapy|tomorrow|61200|64200||"
   },
   {
     "instruction": "Add a happy hour tomorrow at 6pm for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Happy Hour|1749031200|1749034800||"
+    "response": "CALENDAR|Happy Hour|tomorrow|64800|68400||"
   },
   {
     "instruction": "Block tomorrow from 8am to 10am for deep work.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Deep Work|1748995200|1749002400||"
+    "response": "CALENDAR|Deep Work|tomorrow|28800|36000||"
   },
   {
     "instruction": "Schedule a sprint demo this Friday at 2pm for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Sprint Demo|1749189600|1749193200||"
+    "response": "CALENDAR|Sprint Demo|Thursday|50400|54000||"
   },
   {
     "instruction": "Add a team standup this Friday at 9am for 30 minutes.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Team Standup|1749171600|1749173400||"
+    "response": "CALENDAR|Team Standup|Thursday|32400|34200||"
   },
   {
     "instruction": "Book a 1-on-1 this Friday at 10am for 30 minutes with alice@example.com.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|1-on-1|1749175200|1749177000||alice@example.com"
+    "response": "CALENDAR|1-on-1|Thursday|36000|37800||alice@example.com"
   },
   {
     "instruction": "Create a team retrospective this Friday at 3pm for 90 minutes.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Team Retrospective|1749193200|1749198600||"
+    "response": "CALENDAR|Team Retrospective|Thursday|54000|59400||"
   },
   {
     "instruction": "Schedule a client call this Friday at 4pm for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Client Call|1749196800|1749200400||"
+    "response": "CALENDAR|Client Call|Thursday|57600|61200||"
   },
   {
     "instruction": "Schedule a kickoff meeting next Monday at 9am for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Kickoff Meeting|1749430800|1749434400||"
+    "response": "CALENDAR|Kickoff Meeting|Sunday|32400|36000||"
   },
   {
     "instruction": "Add a weekly team sync next Monday at 10am for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Weekly Team Sync|1749434400|1749438000||"
+    "response": "CALENDAR|Weekly Team Sync|Sunday|36000|39600||"
   },
   {
     "instruction": "Book a planning session next Monday at 2pm for 2 hours.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Planning Session|1749448800|1749456000||"
+    "response": "CALENDAR|Planning Session|Sunday|50400|57600||"
   },
   {
     "instruction": "Schedule an all-hands meeting next Monday at 11am for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|All-Hands Meeting|1749438000|1749441600||"
+    "response": "CALENDAR|All-Hands Meeting|Sunday|39600|43200||"
   },
   {
     "instruction": "Add a team lunch next Monday at noon for one hour with partner@example.com.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Team Lunch|1749441600|1749445200||partner@example.com"
+    "response": "CALENDAR|Team Lunch|Sunday|43200|46800||partner@example.com"
   },
   {
     "instruction": "Create a strategy session next Monday at 3pm for 2 hours.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Strategy Session|1749452400|1749459600||"
+    "response": "CALENDAR|Strategy Session|Sunday|54000|61200||"
   },
   {
     "instruction": "Book a morning standup next Monday at 8am for 30 minutes.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Morning Standup|1749427200|1749429000||"
+    "response": "CALENDAR|Morning Standup|Sunday|28800|30600||"
   },
   {
     "instruction": "Schedule a sales review next Monday at 3pm for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Sales Review|1749452400|1749456000||"
+    "response": "CALENDAR|Sales Review|Sunday|54000|57600||"
   },
   {
     "instruction": "Add a 1-on-1 with the CEO next Monday at 4pm for 30 minutes.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|1-on-1 with CEO|1749456000|1749457800||"
+    "response": "CALENDAR|1-on-1 with CEO|Sunday|57600|59400||"
   },
   {
     "instruction": "Book a team dinner next Monday at 6pm for 2 hours.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Team Dinner|1749463200|1749470400||"
+    "response": "CALENDAR|Team Dinner|Sunday|64800|72000||"
   },
   {
     "instruction": "Schedule a design review next Tuesday at 10am for 90 minutes with design@example.com.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Design Review|1749520800|1749526200||design@example.com"
+    "response": "CALENDAR|Design Review|Monday|36000|41400||design@example.com"
   },
   {
     "instruction": "Add a product roadmap session next Tuesday at 2pm for 2 hours.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Product Roadmap Session|1749535200|1749542400||"
+    "response": "CALENDAR|Product Roadmap Session|Monday|50400|57600||"
   },
   {
     "instruction": "Book a standup next Tuesday at 9am for 30 minutes.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Standup|1749517200|1749519000||"
+    "response": "CALENDAR|Standup|Monday|32400|34200||"
   },
   {
     "instruction": "Create a client presentation next Tuesday at 3pm for one hour with client@example.com.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Client Presentation|1749538800|1749542400||client@example.com"
+    "response": "CALENDAR|Client Presentation|Monday|54000|57600||client@example.com"
   },
   {
     "instruction": "Schedule a leadership meeting next Tuesday at 11am for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Leadership Meeting|1749524400|1749528000||"
+    "response": "CALENDAR|Leadership Meeting|Monday|39600|43200||"
   },
   {
     "instruction": "Book a sprint review next Wednesday at 9am for 2 hours.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Sprint Review|1749603600|1749610800||"
+    "response": "CALENDAR|Sprint Review|in 8 days|32400|39600||"
   },
   {
     "instruction": "Schedule a leadership sync next Wednesday at 1pm for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Leadership Sync|1749618000|1749621600||"
+    "response": "CALENDAR|Leadership Sync|in 8 days|46800|50400||"
   },
   {
     "instruction": "Add a team lunch next Wednesday at noon for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Team Lunch|1749614400|1749618000||"
+    "response": "CALENDAR|Team Lunch|in 8 days|43200|46800||"
   },
   {
     "instruction": "Create a code freeze meeting next Wednesday at 3pm for 30 minutes.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Code Freeze Meeting|1749625200|1749627000||"
+    "response": "CALENDAR|Code Freeze Meeting|in 8 days|54000|55800||"
   },
   {
     "instruction": "Schedule an offsite planning session next Wednesday at 2pm for 2 hours.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Offsite Planning Session|1749621600|1749628800||"
+    "response": "CALENDAR|Offsite Planning Session|in 8 days|50400|57600||"
   },
   {
     "instruction": "Book a quick standup today at 2pm for 30 minutes.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Standup|1748930400|1748932200||"
+    "response": "CALENDAR|Standup||50400|52200||"
   },
   {
     "instruction": "Schedule a quick sync today at 4pm for 30 minutes with alex@example.com.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Quick Sync|1748937600|1748939400||alex@example.com"
+    "response": "CALENDAR|Quick Sync||57600|59400||alex@example.com"
   },
   {
     "instruction": "Add a review meeting today at 5pm for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Review Meeting|1748941200|1748944800||"
+    "response": "CALENDAR|Review Meeting||61200|64800||"
   },
   {
     "instruction": "Create a team call today at 6pm for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Team Call|1748944800|1748948400||"
+    "response": "CALENDAR|Team Call||64800|68400||"
   },
   {
     "instruction": "Book a wrap-up call today at 3pm for 30 minutes.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Wrap-Up Call|1748934000|1748935800||"
+    "response": "CALENDAR|Wrap-Up Call||54000|55800||"
   },
   {
     "instruction": "Schedule the monthly all-hands next Thursday at 9am for 2 hours.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Monthly All-Hands|1749690000|1749697200||"
+    "response": "CALENDAR|Monthly All-Hands|in 9 days|32400|39600||"
   },
   {
     "instruction": "Book a board presentation next Thursday at 2pm for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Board Presentation|1749708000|1749711600||"
+    "response": "CALENDAR|Board Presentation|in 9 days|50400|54000||"
   },
   {
     "instruction": "Add an investor call next Thursday at 10am for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Investor Call|1749693600|1749697200||"
+    "response": "CALENDAR|Investor Call|in 9 days|36000|39600||"
   },
   {
     "instruction": "Create a team retrospective next Thursday at 3pm for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Team Retrospective|1749711600|1749715200||"
+    "response": "CALENDAR|Team Retrospective|in 9 days|54000|57600||"
   },
   {
     "instruction": "Schedule a planning session next Thursday at 1pm for 2 hours.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Planning Session|1749704400|1749711600||"
+    "response": "CALENDAR|Planning Session|in 9 days|46800|54000||"
   },
   {
     "instruction": "Schedule a sprint demo next Friday at 2pm for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Sprint Demo|1749794400|1749798000||"
+    "response": "CALENDAR|Sprint Demo|in 10 days|50400|54000||"
   },
   {
     "instruction": "Book a quarterly review next Friday at 9am for 3 hours.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Quarterly Review|1749776400|1749787200||"
+    "response": "CALENDAR|Quarterly Review|in 10 days|32400|43200||"
   },
   {
     "instruction": "Add a team happy hour next Friday at 5pm for 2 hours.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Team Happy Hour|1749805200|1749812400||"
+    "response": "CALENDAR|Team Happy Hour|in 10 days|61200|68400||"
   },
   {
     "instruction": "Schedule a 1-on-1 with my manager next Friday at 10am for 30 minutes.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|1-on-1 with Manager|1749780000|1749781800||"
+    "response": "CALENDAR|1-on-1 with Manager|in 10 days|36000|37800||"
   },
   {
     "instruction": "Book a client wrap-up call next Friday at 3pm for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Client Wrap-Up Call|1749798000|1749801600||"
+    "response": "CALENDAR|Client Wrap-Up Call|in 10 days|54000|57600||"
   },
   {
     "instruction": "Remind me to submit my expense report today at 2pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Submit Expense Report|Time to submit your expense report.|1748930400"
+    "response": "REFUSAL|I can't set reminders in the past. That time has already passed."
   },
   {
     "instruction": "Remind me to review the pull requests tomorrow at 9am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Review Pull Requests|Time to review the pull requests.|1748998800"
+    "response": "NOTIFICATION|Review Pull Requests|Time to review the pull requests.|tomorrow|32400"
   },
   {
     "instruction": "Remind me to call the doctor tomorrow at 10am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Call the Doctor|Time to call the doctor.|1749002400"
+    "response": "NOTIFICATION|Call the Doctor|Time to call the doctor.|tomorrow|36000"
   },
   {
     "instruction": "Set a reminder to send my weekly status update today at 5pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Send Weekly Status Update|Time to send your weekly status update.|1748941200"
+    "response": "NOTIFICATION|Send Weekly Status Update|Time to send your weekly status update.||3600"
   },
   {
     "instruction": "Remind me to take a lunch break today at noon.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Lunch Break|Time to take a lunch break.|1748923200"
+    "response": "REFUSAL|I can't set reminders in the past. That time has already passed."
   },
   {
     "instruction": "Set a reminder to water my plants tonight at 9pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Water Plants|Time to water your plants.|1748955600"
+    "response": "NOTIFICATION|Water Plants|Time to water your plants.||18000"
   },
   {
     "instruction": "Remind me to prep for my meeting tomorrow at 8am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Prep for Meeting|Time to prepare for your meeting.|1748995200"
+    "response": "NOTIFICATION|Prep for Meeting|Time to prepare for your meeting.|tomorrow|28800"
   },
   {
     "instruction": "Alert me to check my emails in 2 hours.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Check Emails|Time to check your emails.|1748887200"
+    "response": "NOTIFICATION|Check Emails|Time to check your emails.||7200"
   },
   {
     "instruction": "Remind me to send the invoice today at 4pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Send Invoice|Time to send the invoice.|1748937600"
+    "response": "NOTIFICATION|Send Invoice|Time to send the invoice.||0"
   },
   {
     "instruction": "Remind me to pick up my prescription tonight at 7pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Pick Up Prescription|Time to pick up your prescription.|1748948400"
+    "response": "NOTIFICATION|Pick Up Prescription|Time to pick up your prescription.||10800"
   },
   {
     "instruction": "Set an alert to follow up with the client tomorrow at 3pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Follow Up with Client|Time to follow up with the client.|1749020400"
+    "response": "NOTIFICATION|Follow Up with Client|Time to follow up with the client.|tomorrow|54000"
   },
   {
     "instruction": "Remind me to post the meeting notes today at 6pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Post Meeting Notes|Time to post the meeting notes.|1748944800"
+    "response": "NOTIFICATION|Post Meeting Notes|Time to post the meeting notes.||7200"
   },
   {
     "instruction": "Set a reminder for my weekly review this Friday at 4pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Weekly Review|Time for your weekly review.|1749196800"
+    "response": "NOTIFICATION|Weekly Review|Time for your weekly review.|Thursday|57600"
   },
   {
     "instruction": "Remind me to back up my files tonight at 10pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Back Up Files|Time to back up your files.|1748959200"
+    "response": "NOTIFICATION|Back Up Files|Time to back up your files.||21600"
   },
   {
     "instruction": "Remind me to renew my parking permit tomorrow at 11am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Renew Parking Permit|Time to renew your parking permit.|1749006000"
+    "response": "NOTIFICATION|Renew Parking Permit|Time to renew your parking permit.|tomorrow|39600"
   },
   {
     "instruction": "Remind me 15 minutes before the all-hands meeting tomorrow at 10am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|All-Hands in 15 Minutes|Your all-hands meeting starts in 15 minutes.|1749001500"
+    "response": "NOTIFICATION|All-Hands in 15 Minutes|Your all-hands meeting starts in 15 minutes.|tomorrow|35100"
   },
   {
     "instruction": "Alert me 10 minutes before my dentist appointment tomorrow at 2pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Dentist Appointment Soon|Your dentist appointment starts in 10 minutes.|1749016200"
+    "response": "NOTIFICATION|Dentist Appointment Soon|Your dentist appointment starts in 10 minutes.|tomorrow|49800"
   },
   {
     "instruction": "Remind me when the sprint planning starts tomorrow at 9:30am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Sprint Planning Starting|Sprint planning is starting now.|1749000600"
+    "response": "NOTIFICATION|Sprint Planning Starting|Sprint planning is starting now.|tomorrow|34200"
   },
   {
     "instruction": "Set an alert for my Friday client call at 4pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Client Call|Your client call starts now.|1749196800"
+    "response": "NOTIFICATION|Client Call|Your client call starts now.|Thursday|57600"
   },
   {
     "instruction": "Remind me 30 minutes before the board meeting tomorrow at 10am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Board Meeting in 30 Minutes|Your board meeting starts in 30 minutes.|1749000600"
+    "response": "NOTIFICATION|Board Meeting in 30 Minutes|Your board meeting starts in 30 minutes.|tomorrow|34200"
   },
   {
     "instruction": "Alert me to join the standup call tomorrow at 8:30am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Standup Call|Time to join the standup call.|1748997000"
+    "response": "NOTIFICATION|Standup Call|Time to join the standup call.|tomorrow|30600"
   },
   {
     "instruction": "Remind me when the retrospective starts this Friday at 3pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Retrospective Starting|The retrospective is starting now.|1749193200"
+    "response": "NOTIFICATION|Retrospective Starting|The retrospective is starting now.|Thursday|54000"
   },
   {
     "instruction": "Set a reminder for the team lunch tomorrow at noon.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Team Lunch|Time for team lunch.|1749009600"
+    "response": "NOTIFICATION|Team Lunch|Time for team lunch.|tomorrow|43200"
   },
   {
     "instruction": "Remind me to prepare slides 1 hour before the demo call tomorrow at 10am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Prep Demo Slides|Prepare your slides — demo call in 1 hour.|1748998800"
+    "response": "NOTIFICATION|Prep Demo Slides|Prepare your slides — demo call in 1 hour.|tomorrow|32400"
   },
   {
     "instruction": "Alert me 5 minutes before the code review tomorrow at 4pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Code Review in 5 Minutes|Your code review starts in 5 minutes.|1749023700"
+    "response": "NOTIFICATION|Code Review in 5 Minutes|Your code review starts in 5 minutes.|tomorrow|57300"
   },
   {
     "instruction": "Remind me when the team call starts tonight at 6pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Team Call Starting|The team call is starting now.|1748944800"
+    "response": "NOTIFICATION|Team Call Starting|The team call is starting now.||7200"
   },
   {
     "instruction": "Set a reminder for the kickoff call this Friday at 9am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Kickoff Call|Your kickoff call is starting now.|1749171600"
+    "response": "NOTIFICATION|Kickoff Call|Your kickoff call is starting now.|Thursday|32400"
   },
   {
     "instruction": "Alert me to join the weekly sync tomorrow at 4pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Weekly Sync|Time to join the weekly sync.|1749024000"
+    "response": "NOTIFICATION|Weekly Sync|Time to join the weekly sync.|tomorrow|57600"
   },
   {
     "instruction": "Remind me 1 hour before my therapy appointment tomorrow at 5pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Therapy in 1 Hour|Your therapy appointment is in 1 hour.|1749024000"
+    "response": "NOTIFICATION|Therapy in 1 Hour|Your therapy appointment is in 1 hour.|tomorrow|57600"
   },
   {
     "instruction": "Set an alert for my manager 1-on-1 tomorrow at 8am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Manager 1-on-1|Your 1-on-1 with your manager starts now.|1748995200"
+    "response": "NOTIFICATION|Manager 1-on-1|Your 1-on-1 with your manager starts now.|tomorrow|28800"
   },
   {
     "instruction": "Remind me to call my mom tonight at 8pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Call Mom|Time to call your mom.|1748952000"
+    "response": "NOTIFICATION|Call Mom|Time to call your mom.||14400"
   },
   {
     "instruction": "Set a reminder to take my vitamins tomorrow morning at 7am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Take Vitamins|Time to take your vitamins.|1748991600"
+    "response": "NOTIFICATION|Take Vitamins|Time to take your vitamins.|tomorrow|25200"
   },
   {
     "instruction": "Remind me to go for a run today at 6pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Go for a Run|Time to go for a run.|1748944800"
+    "response": "NOTIFICATION|Go for a Run|Time to go for a run.||7200"
   },
   {
     "instruction": "Alert me to drink some water in 30 minutes.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Drink Water|Time to drink some water.|1748881800"
+    "response": "NOTIFICATION|Drink Water|Time to drink some water.||1800"
   },
   {
     "instruction": "Remind me to meditate tonight at 9pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Meditate|Time to meditate.|1748955600"
+    "response": "NOTIFICATION|Meditate|Time to meditate.||18000"
   },
   {
     "instruction": "Set a reminder to read before bed tonight at 10pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Read Before Bed|Time to read before bed.|1748959200"
+    "response": "NOTIFICATION|Read Before Bed|Time to read before bed.||21600"
   },
   {
     "instruction": "Remind me to journal tomorrow morning at 6am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Journal|Time to journal.|1748988000"
+    "response": "NOTIFICATION|Journal|Time to journal.|tomorrow|21600"
   },
   {
     "instruction": "Alert me to stretch in 1 hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Stretch|Time to stretch.|1748883600"
+    "response": "NOTIFICATION|Stretch|Time to stretch.||3600"
   },
   {
     "instruction": "Remind me to call my bank tomorrow at 9am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Call the Bank|Time to call your bank.|1748998800"
+    "response": "NOTIFICATION|Call the Bank|Time to call your bank.|tomorrow|32400"
   },
   {
     "instruction": "Set a reminder to call the insurance company tomorrow at 10am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Call Insurance Company|Time to call the insurance company.|1749002400"
+    "response": "NOTIFICATION|Call Insurance Company|Time to call the insurance company.|tomorrow|36000"
   },
   {
     "instruction": "Remind me to charge my laptop tonight at 7pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Charge Laptop|Time to charge your laptop.|1748948400"
+    "response": "NOTIFICATION|Charge Laptop|Time to charge your laptop.||10800"
   },
   {
     "instruction": "Alert me to step outside for fresh air in 2 hours.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Get Fresh Air|Time to step outside for some fresh air.|1748887200"
+    "response": "NOTIFICATION|Get Fresh Air|Time to step outside for some fresh air.||7200"
   },
   {
     "instruction": "Remind me to clean the house this Friday at 10am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Clean the House|Time to clean the house.|1749175200"
+    "response": "NOTIFICATION|Clean the House|Time to clean the house.|Thursday|36000"
   },
   {
     "instruction": "Set a reminder to review my budget next Monday at 9am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Review Budget|Time to review your budget.|1749430800"
+    "response": "NOTIFICATION|Review Budget|Time to review your budget.|Sunday|32400"
   },
   {
     "instruction": "Remind me to water the garden tomorrow evening at 6pm.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Water the Garden|Time to water the garden.|1749031200"
+    "response": "NOTIFICATION|Water the Garden|Time to water the garden.|tomorrow|64800"
   },
   {
     "instruction": "Create an alert: the production server is down.",
@@ -1697,137 +1697,137 @@
   {
     "instruction": "Schedule a quick sync today at 4pm for 30 minutes.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Quick Sync|1748937600|1748939400||"
+    "response": "CALENDAR|Quick Sync||57600|59400||"
   },
   {
     "instruction": "Add a team check-in today at 4pm for 30 minutes.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Team Check-in|1748937600|1748939400||"
+    "response": "CALENDAR|Team Check-in||57600|59400||"
   },
   {
     "instruction": "Urgent reminder to submit my quarterly report at 5pm today.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Submit Quarterly Report|Time to submit your quarterly report.|1748941200"
+    "response": "NOTIFICATION|Submit Quarterly Report|Time to submit your quarterly report.||3600"
   },
   {
     "instruction": "Remind me to send the status update at 5pm today.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Send Status Update|Time to send your status update.|1748941200"
+    "response": "NOTIFICATION|Send Status Update|Time to send your status update.||3600"
   },
   {
     "instruction": "Remind me to take my vitamins tomorrow morning at 7am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Take Vitamins|Time to take your vitamins.|1748991600"
+    "response": "NOTIFICATION|Take Vitamins|Time to take your vitamins.|tomorrow|25200"
   },
   {
     "instruction": "Set an alarm tomorrow at 7am to go for a run.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Go for a Run|Time to go for a run.|1748991600"
+    "response": "NOTIFICATION|Go for a Run|Time to go for a run.|tomorrow|25200"
   },
   {
     "instruction": "Remind me tomorrow at 7am to check my emails.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Check Emails|Time to check your emails.|1748991600"
+    "response": "NOTIFICATION|Check Emails|Time to check your emails.|tomorrow|25200"
   },
   {
     "instruction": "Book a board meeting tomorrow at 10am for 3 hours.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Board Meeting|1749002400|1749013200||"
+    "response": "CALENDAR|Board Meeting|tomorrow|36000|46800||"
   },
   {
     "instruction": "Schedule a workshop tomorrow at 10am for 3 hours.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Workshop|1749002400|1749013200||"
+    "response": "CALENDAR|Workshop|tomorrow|36000|46800||"
   },
   {
     "instruction": "Remind me to call the doctor tomorrow at 10am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Call the Doctor|Time to call the doctor.|1749002400"
+    "response": "NOTIFICATION|Call the Doctor|Time to call the doctor.|tomorrow|36000"
   },
   {
     "instruction": "Alert me to join the all-hands call tomorrow at 10am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|All-Hands Call|Time to join the all-hands call.|1749002400"
+    "response": "NOTIFICATION|All-Hands Call|Time to join the all-hands call.|tomorrow|36000"
   },
   {
     "instruction": "Remind me 15 minutes before the all-hands tomorrow at 10am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|All-Hands in 15 Minutes|Your all-hands meeting starts in 15 minutes.|1749001500"
+    "response": "NOTIFICATION|All-Hands in 15 Minutes|Your all-hands meeting starts in 15 minutes.|tomorrow|35100"
   },
   {
     "instruction": "Alert me 15 minutes before my stand-up tomorrow at 10am.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "NOTIFICATION|Stand-up in 15 Minutes|Your stand-up meeting starts in 15 minutes.|1749001500"
+    "response": "NOTIFICATION|Stand-up in 15 Minutes|Your stand-up meeting starts in 15 minutes.|tomorrow|35100"
   },
   {
     "instruction": "Schedule a team lunch tomorrow at noon for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Team Lunch|1749009600|1749013200||"
+    "response": "CALENDAR|Team Lunch|tomorrow|43200|46800||"
   },
   {
     "instruction": "Add a lunch break tomorrow at noon for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Lunch Break|1749009600|1749013200||"
+    "response": "CALENDAR|Lunch Break|tomorrow|43200|46800||"
   },
   {
     "instruction": "Block noon tomorrow for a working lunch, one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Working Lunch|1749009600|1749013200||"
+    "response": "CALENDAR|Working Lunch|tomorrow|43200|46800||"
   },
   {
     "instruction": "Book a dentist appointment tomorrow at 2pm for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Dentist Appointment|1749016800|1749020400|Dentist Office|"
+    "response": "CALENDAR|Dentist Appointment|tomorrow|50400|54000|Dentist Office|"
   },
   {
     "instruction": "Schedule a client call tomorrow at 2pm for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Client Call|1749016800|1749020400||"
+    "response": "CALENDAR|Client Call|tomorrow|50400|54000||"
   },
   {
     "instruction": "Add a 1-on-1 meeting tomorrow at 2pm for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|1-on-1|1749016800|1749020400||"
+    "response": "CALENDAR|1-on-1|tomorrow|50400|54000||"
   },
   {
     "instruction": "Schedule a kickoff meeting next Monday at 9am for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Kickoff Meeting|1749430800|1749434400||"
+    "response": "CALENDAR|Kickoff Meeting|Sunday|32400|36000||"
   },
   {
     "instruction": "Book a planning session next Monday at 9am for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Planning Session|1749430800|1749434400||"
+    "response": "CALENDAR|Planning Session|Sunday|32400|36000||"
   },
   {
     "instruction": "Add a team sync next Monday at 10am for one hour.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Team Sync|1749434400|1749438000||"
+    "response": "CALENDAR|Team Sync|Sunday|36000|39600||"
   },
   {
     "instruction": "Book a quarterly review next Friday at 9am for 3 hours.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Quarterly Review|1749776400|1749787200||"
+    "response": "CALENDAR|Quarterly Review|in 10 days|32400|43200||"
   },
   {
     "instruction": "Schedule an all-hands next Friday at 9am for 2 hours.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|All-Hands Meeting|1749776400|1749783600||"
+    "response": "CALENDAR|All-Hands Meeting|in 10 days|32400|39600||"
   },
   {
     "instruction": "Schedule a standup tomorrow at 9am for one hour. Explain your reasoning.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Standup|1748998800|1749002400|||REASON|Current time 1748880000 = 2025-06-02 16:00 UTC. Tomorrow midnight = 1748966400. 9am = +32400s = 1748998800. End = +3600s = 1749002400."
+    "response": "CALENDAR|Standup|tomorrow|32400|36000|||REASON|Current time 1748880000 = 2025-06-02 16:00 UTC. Tomorrow midnight = 1748966400. 9am = +32400s = 1748998800. End = +3600s = 1749002400."
   },
   {
     "instruction": "Book a dentist tomorrow at 2pm for one hour and explain why you chose those timestamps.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Dentist Appointment|1749016800|1749020400|||REASON|Current time 1748880000 = 2025-06-02 16:00 UTC. Tomorrow midnight = 1748966400. 2pm = +50400s = 1749016800. End = +3600s = 1749020400."
+    "response": "CALENDAR|Dentist Appointment|tomorrow|50400|54000|||REASON|Current time 1748880000 = 2025-06-02 16:00 UTC. Tomorrow midnight = 1748966400. 2pm = +50400s = 1749016800. End = +3600s = 1749020400."
   },
   {
     "instruction": "Add a team lunch tomorrow at noon for one hour. Show your reasoning.",
     "input": "Current time: Monday, June 2, 2025 4:00 PM",
-    "response": "CALENDAR|Team Lunch|1749009600|1749013200|||REASON|Current time 1748880000 = 2025-06-02 16:00 UTC. Tomorrow midnight = 1748966400. Noon = +43200s = 1749009600. End = +3600s = 1749013200."
+    "response": "CALENDAR|Team Lunch|tomorrow|43200|46800|||REASON|Current time 1748880000 = 2025-06-02 16:00 UTC. Tomorrow midnight = 1748966400. Noon = +43200s = 1749009600. End = +3600s = 1749013200."
   },
   {
     "instruction": "Schedule a call yesterday at 3pm. Explain why you refused.",

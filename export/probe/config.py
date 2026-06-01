@@ -8,15 +8,15 @@ load_dotenv()
 # Minimum pass rate per domain. A run fails if any domain drops below its threshold.
 # Blocking probes marked blocking=False are excluded from the threshold denominator.
 THRESHOLDS: dict[str, float] = {
-    "ADVERSARIAL":  1.00,
-    "SCOPE":        1.00,
-    "AMBIGUOUS":    1.00,
-    "TEMPORAL":     1.00,
+    "ADVERSARIAL": 1.00,
+    "SCOPE": 1.00,
+    "AMBIGUOUS": 1.00,
+    "TEMPORAL": 1.00,
     "NOTIFICATION": 1.00,
-    "FEED_CARD":    1.00,
-    "CALENDAR":     0.91,  # 11/12 — CoT calendar failure accepted
-    "DISSONANCE":   0.88,  # 8/9  — duration contradiction accepted
-    "ARBITRATION":  0.75,  # 3/4  — new category, baseline TBD after first run
+    "FEED_CARD": 1.00,
+    "CALENDAR": 0.91,  # 11/12 — CoT calendar failure accepted
+    "DISSONANCE": 0.88,  # 8/9  — duration contradiction accepted
+    "ARBITRATION": 0.75,  # 3/4  — new category, baseline TBD after first run
 }
 
 

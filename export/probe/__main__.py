@@ -15,11 +15,16 @@ def main() -> None:
             "Example: PROBE_THRESHOLD_CALENDAR=0.85 or --threshold CALENDAR=0.85"
         ),
     )
-    parser.add_argument("--model", required=True, help="Path to fused model (model/merged)")
+    parser.add_argument(
+        "--model", required=True, help="Path to fused model (model/merged)"
+    )
     parser.add_argument("--max-tokens", type=int, default=None)
     parser.add_argument("--verbose", "-v", action="store_true", default=None)
     parser.add_argument(
-        "--threshold", metavar="DOMAIN=RATE", action="append", default=[],
+        "--threshold",
+        metavar="DOMAIN=RATE",
+        action="append",
+        default=[],
         help="Override a domain threshold. Repeatable. Takes precedence over env vars.",
     )
     args = parser.parse_args()
@@ -30,7 +35,10 @@ def main() -> None:
             domain, rate = spec.split("=", 1)
             cli_thresholds[domain.upper()] = float(rate)
         except ValueError:
-            print(f"Invalid --threshold format: {spec!r}. Use DOMAIN=RATE.", file=sys.stderr)
+            print(
+                f"Invalid --threshold format: {spec!r}. Use DOMAIN=RATE.",
+                file=sys.stderr,
+            )
             sys.exit(1)
 
     config = Config.from_env(model_path=args.model).apply_cli_overrides(

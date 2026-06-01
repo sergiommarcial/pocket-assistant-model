@@ -50,16 +50,26 @@ dataset: check-python ## Build train/valid JSONL from data/raw/
 test: check-python ## Run pytest unit tests
 	$(UV_RUN) pytest tests/ -v
 
-train: check-python ## LoRA fine-tune (800 iters, writes to model/adapters/)
+train: check-python ## LoRA fine-tune (1000 iters, writes to model/adapters/)
 	$(UV_RUN) mlx_lm.lora --config training/lora_config.yaml
+	@$(PYTHON) -c "v=open('VERSION').read().strip().split('.'); v[2]=str(int(v[2])+1); open('VERSION','w').write('.'.join(v)+'\n')"
+	@echo "$(GREEN)Version bumped to $$(cat VERSION)$(RESET)"
 
 fuse: check-python ## Merge adapters into model/merged/
 	$(UV_RUN) mlx_lm.fuse \
-		--model HuggingFaceTB/SmolLM2-360M-Instruct \
+		--model Qwen/Qwen2.5-1.5B-Instruct \
 		--adapter-path model/adapters \
 		--save-path model/merged
+	@printf '{"version":"%s","git_sha":"%s","built_at":"%s"}\n' \
+		"$$(cat VERSION)" \
+		"$$(git rev-parse --short HEAD 2>/dev/null || echo unknown)" \
+		"$$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+		> model/merged/pocket-assistant-version.json
+	@sed -i '' 's/You are Qwen, created by Alibaba Cloud\. You are a helpful assistant\./You are a helpful assistant./g' model/merged/chat_template.jinja
+	@echo "$(GREEN)Version: $$(cat VERSION) ($$(git rev-parse --short HEAD 2>/dev/null || echo unknown))$(RESET)"
 
 quantize: check-python ## 4-bit quantize model/merged → model/quantized/
+	rm -rf model/quantized
 	$(UV_RUN) mlx_lm.convert \
 		--hf-path model/merged \
 		--mlx-path model/quantized \

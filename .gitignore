@@ -12,3 +12,4 @@ __pycache__/
 *.log
 *.pt
 *.pth
+*.xcappdata

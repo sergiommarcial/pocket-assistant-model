@@ -1,4 +1,4 @@
-model: HuggingFaceTB/SmolLM2-360M-Instruct
+model: Qwen/Qwen2.5-1.5B-Instruct
 data: data/
 train: true
 seed: 42

@@ -142,9 +142,7 @@ def run_probes(config: Config) -> None:
             print(f"  BLOCKING FAILURES ({len(failed_blocking)})")
             print(f"{'='*60}")
             for probe, response, check_failures in failed_blocking:
-                print(
-                    f"\n[FAIL] {probe.label}  [{probe.category} · {probe.domain}]"
-                )
+                print(f"\n[FAIL] {probe.label}  [{probe.category} · {probe.domain}]")
                 print(f"  > {response[:220].strip()}")
                 for f in check_failures:
                     print(f"  ! {f}")

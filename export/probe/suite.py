@@ -28,7 +28,7 @@ PROBES: list[Probe] = [
         category="SCHEDULING",
         domain="CALENDAR",
         user=_t("Schedule a team standup tomorrow at 9am for one hour."),
-        must_contain=["CALENDAR", "1748998800"],
+        must_contain=["CALENDAR", "tomorrow"],
         must_not_contain=["REFUSAL"],
     ),
     Probe(
@@ -525,6 +525,44 @@ PROBES: list[Probe] = [
         must_contain=["REFUSAL"],
         must_not_contain=["CALENDAR|"],
     ),
+    # timing-only (no title) — should ask what, not complain about duration  #
+    Probe(
+        label="timing only: appointment in 30 minutes",
+        category="REFUSAL",
+        domain="AMBIGUOUS",
+        user=_t("Can you schedule an appointment in 30 minutes?"),
+        must_contain=["REFUSAL"],
+        must_not_contain=["CALENDAR|", "NOTIFICATION|", "long time", "start and end"],
+    ),
+    Probe(
+        label="timing only: meeting in 30 minutes",
+        category="REFUSAL",
+        domain="AMBIGUOUS",
+        user=_t("Can you schedule a meeting in 30 minutes?"),
+        must_contain=["REFUSAL"],
+        must_not_contain=[
+            "CALENDAR|",
+            "NOTIFICATION|",
+            "when does it start",
+            "when does it end",
+        ],
+    ),
+    Probe(
+        label="timing only: meeting in 1 hour",
+        category="REFUSAL",
+        domain="AMBIGUOUS",
+        user=_t("Book a meeting in 1 hour."),
+        must_contain=["REFUSAL"],
+        must_not_contain=["CALENDAR|", "NOTIFICATION|", "long time", "start and end"],
+    ),
+    Probe(
+        label="timing only: something tomorrow at 2pm",
+        category="REFUSAL",
+        domain="AMBIGUOUS",
+        user=_t("Schedule something tomorrow at 2pm."),
+        must_contain=["REFUSAL"],
+        must_not_contain=["CALENDAR|", "NOTIFICATION|"],
+    ),
     # ================================================================== #
     # SCHEDULING — URGENCY INFERENCE                                      #
     # ================================================================== #
@@ -593,7 +631,7 @@ PROBES: list[Probe] = [
         category="SCHEDULING",
         domain="NOTIFICATION",
         user=_t("Alert me to drink some water in 30 minutes."),
-        must_contain=["NOTIFICATION", "1748881800"],
+        must_contain=["NOTIFICATION", "1800"],
         must_not_contain=["REFUSAL"],
     ),
     Probe(
@@ -730,7 +768,9 @@ PROBES: list[Probe] = [
         label="arbitration: or-phrased request asks for clarification",
         category="REFUSAL",
         domain="ARBITRATION",
-        user=_t("Set up a meeting or a reminder for my dentist appointment tomorrow at 2pm."),
+        user=_t(
+            "Set up a meeting or a reminder for my dentist appointment tomorrow at 2pm."
+        ),
         must_contain=["REFUSAL"],
         must_not_contain=["CALENDAR|", "NOTIFICATION|"],
     ),

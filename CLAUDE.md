@@ -22,6 +22,7 @@ Always invoke these skills before acting:
 - **No summaries** — don't summarize what was done at the end of a response; the diff speaks for itself
 - **No unnecessary tasks** — don't add error handling, abstractions, tests, or comments beyond what was explicitly asked for
 - **Document new scenarios** — every clarified behavior or new interaction pattern must be added to README.md with an example before the work is considered done
+- **Training data collision check** — before adding any targeted patch or modifying a training record, grep `data/raw/` for all records that share key words or patterns with the change. Confirm no existing records contradict the intended behavior. This is mandatory; skipping it causes NOTIFICATION/CALENDAR regressions.
 
 ## Git restrictions
 
@@ -63,7 +64,7 @@ Python 3.11 required. Dependency manager: `uv`. Never use `pip` directly.
 
 ### Overview
 
-ML fine-tuning pipeline for SmolLM2-360M-Instruct. Produces a LoRA-adapted model exported to Core ML (`.mlpackage`) for on-device inference in the `pocket-assistant` iOS app.
+ML fine-tuning pipeline for Qwen2.5-1.5B-Instruct. Produces a LoRA-adapted model exported to Core ML (`.mlpackage`) for on-device inference in the `pocket-assistant` iOS app.
 
 ```
 data/raw/*.json

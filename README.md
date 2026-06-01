@@ -1,6 +1,6 @@
 # pocket-assistant-model
 
-Fine-tuning pipeline for the on-device personal assistant in [pocket-assistant](../pocket-assistant). Takes SmolLM2-360M-Instruct, LoRA fine-tunes it on a structured scheduling task, and exports to Core ML for on-device inference.
+Fine-tuning pipeline for the on-device personal assistant in [pocket-assistant](../pocket-assistant). Takes Qwen2.5-1.5B-Instruct, LoRA fine-tunes it on a structured scheduling task, and exports to Core ML for on-device inference.
 
 ## Contents
 
@@ -19,22 +19,18 @@ Fine-tuning pipeline for the on-device personal assistant in [pocket-assistant](
 
 | | |
 |---|---|
-| **Base model** | HuggingFaceTB/SmolLM2-360M-Instruct |
-| **Parameters** | 360M |
+| **Base model** | Qwen/Qwen2.5-1.5B-Instruct |
+| **Parameters** | 1.5B |
 | **LoRA rank** | 16 |
 | **Layers adapted** | 16 |
 | **Training iterations** | 1000 |
 | **Learning rate** | 1e-4 |
 | **Batch size** | 4 |
 | **Max sequence length** | 512 tokens |
-| **Training records** | 270 train / ~154 valid |
-| **Targeted patches** | 43 (always in TRAIN, bypass shuffle) |
-| **Probe results** | 74/80 (92.5% pre-arbitration baseline) |
-| **Accepted failures** | 2 (see [Known failures](#known-failures)) |
 | **Reference time** | Monday, June 2, 2025 4:00 PM (Unix `1748880000`) |
 | **Output types** | 4 — `CALENDAR`, `NOTIFICATION`, `FEED_CARD`, `REFUSAL` |
 | **Export format** | Core ML `.mlpackage` (iOS 17+) |
-| **Training time** | ~25 min on M-series Mac |
+| **Training time** | ~60-90 min on M-series Mac |
 
 
 ## Approbal gates
@@ -69,15 +65,16 @@ make install
 The model has one job: given the current time and a natural-language request, output a single pipe-delimited string matching one of four schemas. Nothing else.
 
 ```
-CALENDAR|title|startUnix|endUnix|location|attendees
-NOTIFICATION|title|body|fireAtUnix
+CALENDAR|title|anchor|startOffset|endOffset|location|attendees
+NOTIFICATION|title|body|anchor|fireAtOffset
 FEED_CARD|title|body|priority
 REFUSAL|reason
 ```
 
 ### Field rules
 
-- `startUnix`, `endUnix`, `fireAtUnix` — Unix timestamps in seconds since epoch, computed from the current time passed in the user message.
+- `anchor` — human-readable day reference: `"today"`, `"tomorrow"`, a weekday name (`"Friday"`, `"Wednesday"`), or `"next Monday"`. Use an empty string for same-day relative offsets (e.g. "in 30 minutes").
+- `startOffset`, `endOffset`, `fireAtOffset` — seconds from midnight of the anchor day. When anchor is empty, seconds from now.
 - `location`, `attendees` — optional; leave empty (trailing `|`) if not provided.
 - `attendees` — comma-separated list of email addresses when multiple.
 - `priority` — one of `low`, `medium`, or `high`.
@@ -96,11 +93,14 @@ The system prompt (`data/system_prompt.txt`) must match exactly what the iOS app
 ### Examples
 
 ```
-# Calendar event with attendees
-CALENDAR|Kickoff Call|1748998800|1749002400||alice@example.com,bob@example.com
+# Calendar event tomorrow at 9am for 1 hour, with attendee
+CALENDAR|Kickoff Call|tomorrow|32400|36000||alice@example.com,bob@example.com
 
-# Notification 30 minutes from now (current time = 4:00 PM → fireAt = 4:30 PM)
-NOTIFICATION|Drink Water|Time to drink some water.|1748881800
+# Notification 30 minutes from now (empty anchor = relative to now; 1800s = 30 min)
+NOTIFICATION|Drink Water|Time to drink some water.||1800
+
+# Notification tomorrow at 10am (anchor = "tomorrow"; 36000s = 10 hours from midnight)
+NOTIFICATION|Call Doctor|Time to call the doctor.|tomorrow|36000
 
 # Feed card
 FEED_CARD|Production Server Down|The production server is currently down. Immediate attention required.|high
@@ -114,7 +114,7 @@ REFUSAL|Writing blog posts is outside my scope. I can schedule events, set remin
 When the user asks the model to explain its reasoning, it appends `|REASON|explanation` to any output type:
 
 ```
-NOTIFICATION|Drink Water|Time to drink some water.|1748881800|REASON|Current time is Monday June 2 4:00 PM UTC = 1748880000. 30 minutes = 1800s. Fire at: 1748880000 + 1800 = 1748881800.
+NOTIFICATION|Drink Water|Time to drink some water.||1800|REASON|No specific day reference — offset from now. 30 minutes = 1800s.
 ```
 
 This suffix is only emitted when explicitly requested. The `REASON` field is for human inspection — the iOS app strips it before parsing.
@@ -127,7 +127,7 @@ Full pipeline from data to verified model:
 make dataset    # build data/train.jsonl + data/valid.jsonl from data/raw/*.json
 make train      # LoRA fine-tune (1000 iters, ~25 min on M-series Mac)
 make fuse       # merge adapters into model/merged/
-make probe      # run 80 behavioral probes against model/merged
+make probe      # run 83 behavioral probes against model/merged
 ```
 
 To regenerate `model/merged/` from existing adapters (without retraining):
@@ -156,7 +156,7 @@ make gguf       # export to model/pocket-assistant-q4.gguf (for llama.cpp / Olla
 
 Raw data lives in `data/raw/*.json` — arrays of `{ "instruction": "...", "input": "...", "response": "..." }` records. `input` carries context, typically `"Current time: Monday, June 2, 2025 4:00 PM"`. `make dataset` strips JS-style `//` comments (used for section headers in the JSON files), wraps each record in ChatML with the system prompt, and splits 270/N train/valid with seed 42.
 
-All training examples use a fixed reference time: **Monday, June 2, 2025 4:00 PM** (Unix `1748880000`). All timestamps in the dataset are computed relative to that anchor.
+All training examples use a fixed reference time: **Monday, June 2, 2025 4:00 PM** (Unix `1748880000`). Responses use the anchor+offset format: a human-readable day reference plus seconds from midnight of that day. `data/migrate_to_offsets.py` converts legacy Unix timestamps to this format using `delta = ts - REF_TIME`; `delta // 86400` gives the intended day offset and `delta % 86400` gives the time-of-day seconds.
 
 ### Targeted patches
 
@@ -175,7 +175,7 @@ Already applied. `data/fix_data_quality.py` fixed:
 
 ## Verification
 
-`export/probe.py` runs 76 behavioral tests against a fused model. Each probe sends a natural-language instruction (with current-time context) and checks that the output contains or excludes specific strings.
+`export/probe.py` runs 83 behavioral tests against a fused model. Each probe sends a natural-language instruction (with current-time context) and checks that the output contains or excludes specific strings.
 
 ```bash
 uv run python export/probe.py --model model/merged
@@ -191,33 +191,13 @@ Add `--verbose` for full model output per probe.
 | Scheduling · Notification | 9 | NOTIFICATION output: relative times, absolute times, CoT absent when not asked |
 | Scheduling · Feed card | 6 | FEED_CARD output: priority levels, urgency detection |
 | Refusal · Adversarial | 17 | Resistance to prompt injection, role override, social engineering, scope redefinition |
-| Refusal · Ambiguous | 12 | REFUSAL for vague or multi-action requests |
+| Refusal · Ambiguous | 15 | REFUSAL for vague or multi-action requests; timing-only inputs |
 | Refusal · Dissonance | 9 | REFUSAL for self-contradictory inputs (conflicting times, durations, past events) |
 | Refusal · Scope | 6 | REFUSAL for out-of-scope requests (writing, code, search) |
 | Refusal · Temporal | 5 | REFUSAL for past-date scheduling; CoT on temporal refusal |
 | Arbitration | 4 | Correct output type when wording is ambiguous (attend vs create, block vs remind, or-phrased) |
 
-Current result: **74/80** (4 arbitration probes untested against current model). The 2 known failing probes are accepted — see below.
-
-## Known failures
-
-Both are accepted as the ceiling for a 360M model on ~390 training records. Every fix attempt caused regressions elsewhere.
-
-### `cot: reasoning field present when asked`
-
-**Probe:** "Schedule a standup tomorrow at 9am for one hour. Explain your reasoning."  
-**Expected:** `CALENDAR|...|REASON|...`  
-**Actual:** `CALENDAR|...|` (no REASON suffix, or REFUSAL)
-
-Every CoT standup patch we tried caused the model to start refusing valid future times (8pm medication, 5pm report) as "already passed", and hallucinate self-referential responses like "I take my medication at 8pm. I can't remind myself." The 360M model can't hold CoT for CALENDAR events without breaking other things.
-
-### `dissonance: duration contradicts time span`
-
-**Probe:** "Schedule a 30-minute standup tomorrow from 9am to 11am."  
-**Expected:** `REFUSAL|The time span (9am to 11am) is 2 hours, not 30 minutes...`  
-**Actual:** `CALENDAR|30-Minute Standup|...|`
-
-A base training record for this exists at position [40] in the seed=42 shuffle (always TRAIN). We added a targeted patch to reinforce it using the TRAIN_N+1 trick to avoid displacing a critical CoT record ([226]). With 2 TRAIN copies the model still outputs CALENDAR. Adding more copies triggers the same timestamp confusion regressions as the CoT fix attempts.
+Current result: pending first run on Qwen2.5-1.5B-Instruct.
 
 ## Interaction patterns
 
@@ -237,12 +217,12 @@ Decisions about how the model output maps to app behavior. Each pattern is a set
 
 ```
 User:  Create a block for me in 30 minutes.
-Model: NOTIFICATION|Focus Block|Time for your focus block.|1748881800
+Model: NOTIFICATION|Focus Block|Time for your focus block.||1800
 
 App:   Also add this to your calendar? [Yes] [No]
 
 User:  Yes
-Model: CALENDAR|Focus Block|1748881800|1748885400||
+Model: CALENDAR|Focus Block||1800|5400||
 ```
 
 ### Ambiguous duration → REFUSAL (ask)
@@ -251,15 +231,56 @@ Model: CALENDAR|Focus Block|1748881800|1748885400||
 
 **Model output:** `REFUSAL|I need more details. How long is the event?`
 
-This is correct — CALENDAR requires both `startUnix` and `endUnix`. Don't patch this behavior.
+This is correct — CALENDAR requires both `startOffset` and `endOffset`. Don't patch this behavior.
+
+### Timing specified, title missing → REFUSAL (ask what)
+
+**Scenario:** User gives a time ("in 30 minutes", "tomorrow at 2pm") but no title or subject.
+
+**Model output:** `REFUSAL|I need more details. What is the appointment for?`
+
+The refusal asks only what the event is about — it does not ask for start/end times, since the user already provided timing. "In 30 minutes" means the event *starts* in 30 minutes; it is not a duration.
+
+**Examples:**
+
+```
+User:  Can you schedule an appointment in 30 minutes?
+Model: REFUSAL|I need more details. What is the appointment for?
+
+User:  Book a meeting in 1 hour.
+Model: REFUSAL|I need more details. What is the meeting for?
+
+User:  Schedule something tomorrow at 2pm.
+Model: REFUSAL|I need more details. What would you like to schedule?
+
+User:  Set up a call in 2 hours.
+Model: REFUSAL|I need more details. What is the call about?
+
+User:  Add an event next Monday at 10am.
+Model: REFUSAL|I need more details. What is the event?
+```
 
 ### Personal event (no attendees)
 
 **Scenario:** User creates an event for themselves with no other participants.
 
-**Model output:** `CALENDAR|title|startUnix|endUnix||` — attendees field is empty.
+**Model output:** `CALENDAR|title|anchor|startOffset|endOffset||` — attendees field is empty.
 
 The device owner is always the calendar owner. No need to add them to the attendees list.
+
+### Ownership assumption
+
+All events and reminders are always created for the device owner. The model never asks "Is this for you?" or "Who is this for?" — the answer is always the user. The attendees field is only for *other* people invited to the event.
+
+```
+User:  Schedule a dentist appointment tomorrow at 2pm for 1 hour.
+Model: CALENDAR|Dentist Appointment|tomorrow|50400|54000||
+
+User:  Add a kickoff call with alice@example.com and bob@example.com tomorrow at 10am for 1 hour.
+Model: CALENDAR|Kickoff Call|tomorrow|36000|39600||alice@example.com,bob@example.com
+```
+
+The device owner is implied; they are never added to the attendees list. If no other people are mentioned, the attendees field is always empty — the model never infers or guesses attendees.
 
 ## Directory layout
 
